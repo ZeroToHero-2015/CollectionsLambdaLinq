@@ -33,7 +33,28 @@ namespace Collections
 
         private static void DictionaryExample()
         {
-            
+            var bandsDictionary = new Dictionary<string, Band>();
+            foreach (var band in BandsArray)
+            {
+                bandsDictionary.Add(band.Name, band);
+            }
+
+            foreach (var keyValuePair in bandsDictionary)
+            {
+                //TODO: Change to display key and albums count
+                Console.WriteLine("Key: {0}, Value: {1}", keyValuePair.Key, keyValuePair.Value);
+            }
+
+            Console.WriteLine();
+
+            //TODO: See what happens for key not present in dictionary.
+            var bandToGet = bandsDictionary["Muse"];
+            Console.WriteLine("{0} {1} {2}", bandToGet.Name, bandToGet.Genre, bandToGet.Country);
+
+            Console.WriteLine();
+
+            //TODO: Check if key is present before adding/retrieving value it.
+            //bandsDictionary.Add("Muse", new Band("Muse", 6, "Alternative Rock", "England"));
         }
 
         private static void YieldExample()
