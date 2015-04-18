@@ -24,37 +24,11 @@ namespace Collections
 
         static void Main(string[] args)
         {
-            //YieldExample();
+            YieldExample();
             //EnumerableExample();
             //CollectionExample();
             //ListExample();
-            DictionaryExample();
-        }
-
-        private static void DictionaryExample()
-        {
-            var bandsDictionary = new Dictionary<string, Band>();
-            foreach (var band in BandsArray)
-            {
-                bandsDictionary.Add(band.Name, band);
-            }
-
-            foreach (var keyValuePair in bandsDictionary)
-            {
-                //TODO: Change to display key and albums count
-                Console.WriteLine("Key: {0}, Value: {1}", keyValuePair.Key, keyValuePair.Value);
-            }
-
-            Console.WriteLine();
-
-            //TODO: See what happens for key not present in dictionary.
-            var bandToGet = bandsDictionary["Muse"];
-            Console.WriteLine("{0} {1} {2}", bandToGet.Name, bandToGet.Genre, bandToGet.Country);
-
-            Console.WriteLine();
-
-            //TODO: Check if key is present before adding/retrieving value it.
-            //bandsDictionary.Add("Muse", new Band("Muse", 6, "Alternative Rock", "England"));
+            //DictionaryExample();
         }
 
         private static void YieldExample()
@@ -69,74 +43,37 @@ namespace Collections
 
             Console.WriteLine();
 
-            var bandsList = new List<Band>(BandsArray);
-            foreach (var bandName in BandNames(bandsList))
-            {
-                Console.WriteLine(bandName);
-            }
-        }
-
-        private static IEnumerable BandNames(IEnumerable<Band> bandsList)
-        {
-            int index = 0;
-            foreach (var band in bandsList)
-            {
-                yield return index + " " + band.Name;
-                index++;
-            }
-        }
-
-        private static IEnumerable<string> FrontmenList()
-        {
-            yield return "Robert Plant";
-            yield return "Rob Halford";
-            yield return "Nicu Covaci";
-            yield return "Ozzy Osbourne";
-            yield return "Till Lindemann";
-            yield return "Dan Auerbach";
-            yield return "Matt Bellamy";
-        }
-
-        private static void ListExample()
-        {
-            Console.WriteLine();
-            Console.WriteLine("-----------------------------List Example-----------------------------");
-
-            var bandsList = new List<Band>(BandsArray);
-
-            bandsList.Sort(new BasicBandsComparer());
-            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
-            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Name));
-            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.AlbumCount));
-
-            var index = 0;
-            foreach (var band in bandsList)
-            {
-                Console.WriteLine("{0} {1} {2} {3}", index, band.Name, band.StudioAlbums, band.Country);
-                index ++;
-            }
-
-            Console.WriteLine();
-
-            var bandsToAdd = new[]
-            {
-                new Band("Guta", 0, "", ""),
-                new Band("Salam", 0, "", "")
-            };
-            bandsList.AddRange(bandsToAdd);
-            var lastTwoBands = bandsList.GetRange(bandsList.Count - 2, 2);
-
-            foreach (var bandName in BandNames(lastTwoBands))
+            var bandNames = BandNames(new List<Band>(BandsArray));
+            foreach (var bandName in bandNames)
             {
                 Console.WriteLine(bandName);
             }
 
             Console.WriteLine();
 
-            var indexNewGuta = bandsList.IndexOf(new Band("Guta", 0, "", ""));
-            Console.WriteLine("Index of new Guta is {0}", indexNewGuta);
-            var indexRefGuta = bandsList.IndexOf(bandsToAdd[0]);
-            Console.WriteLine("Index of reference Guta is {0}", indexRefGuta);
+            //TODO 1: Implement "FirstNames" to return only first names, using foreach, yield, and string.Split(Char[])
+            var firstNames = FirstNames(FrontmenList());
+            foreach (var firstName in firstNames)
+            {
+                Console.WriteLine(firstName);
+            }
+        }
+
+        private static void EnumerableExample()
+        {
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------Enumerable Example-----------------------------");
+
+            var bands = new BandsEnumerable(BandsArray);
+
+            var enumerator = bands.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var band = enumerator.Current;
+                Console.WriteLine("{0} ({1}, {2}): {3} albums.", band.Name, band.Genre, band.Country, band.StudioAlbums);
+            }
+
+            //TODO 2: Change "BandsEnumerator" to enumerate from last element to first.
         }
 
         private static void CollectionExample()
@@ -160,21 +97,109 @@ namespace Collections
             {
                 Console.WriteLine(bandName);
             }
+
+            //TODO 3: Update bandsCollection.Clear() so it prints the removed items.
         }
 
-        private static void EnumerableExample()
+        private static void ListExample()
         {
             Console.WriteLine();
-            Console.WriteLine("-----------------------------Enumerable Example-----------------------------");
+            Console.WriteLine("-----------------------------List Example-----------------------------");
 
-            var bands = new BandsEnumerable(BandsArray);
+            var bandsList = new List<Band>(BandsArray);
 
-            var enumerator = bands.GetEnumerator();
-            while (enumerator.MoveNext())
+            bandsList.Sort(new BasicBandsComparer());
+            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
+            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Name));
+            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.AlbumCount));
+
+            var index = 0;
+            foreach (var band in bandsList)
             {
-                var band = enumerator.Current;
-                Console.WriteLine("{0} ({1}, {2}): {3} albums.", band.Name, band.Genre, band.Country, band.StudioAlbums);
+                Console.WriteLine("{0} {1} {2} {3}", index, band.Name, band.StudioAlbums, band.Country);
+                index++;
+            }
+
+            Console.WriteLine();
+
+            var bandsToAdd = new[]
+            {
+                new Band("Guta", 0, "", ""),
+                new Band("Salam", 0, "", "")
+            };
+            bandsList.AddRange(bandsToAdd);
+            var lastTwoBands = bandsList.GetRange(bandsList.Count - 2, 2);
+
+            foreach (var bandName in BandNames(lastTwoBands))
+            {
+                Console.WriteLine(bandName);
+            }
+
+            Console.WriteLine();
+
+            var indexNewGuta = bandsList.IndexOf(new Band("Guta", 0, "", ""));
+            Console.WriteLine("Index of new Guta is {0}", indexNewGuta);
+            var indexRefGuta = bandsList.IndexOf(bandsToAdd[0]);
+            Console.WriteLine("Index of reference Guta is {0}", indexRefGuta);
+
+            //TODO 4: Extend CustomBandsComparer to allow comapring by name length.
+        }
+
+        private static void DictionaryExample()
+        {
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------Dictionary Example-----------------------------");
+
+            var bandsDictionary = new Dictionary<string, Band>();
+            foreach (var band in BandsArray)
+            {
+                bandsDictionary.Add(band.Name, band);
+            }
+
+            foreach (var keyValuePair in bandsDictionary)
+            {
+                //TODO 5: Change to display key and albums count
+                Console.WriteLine("Key: {0}, Value: {1}", keyValuePair.Key, keyValuePair.Value);
+            }
+
+            Console.WriteLine();
+
+            //TODO 6: See what happens for key not present in dictionary.
+            var bandToGet = bandsDictionary["Muse"];
+            Console.WriteLine("{0} {1} {2}", bandToGet.Name, bandToGet.Genre, bandToGet.Country);
+
+            Console.WriteLine();
+
+            //TODO 7: Check if key is present before adding/retrieving a new entry.
+            //bandsDictionary.Add("Muse", new Band("Muse", 6, "Alternative Rock", "England"));
+            //Console.WriteLine(bandsDictionary["Guta"].Name);
+        }
+
+        private static IEnumerable<string> FrontmenList()
+        {
+            yield return "Robert Plant";
+            yield return "Rob Halford";
+            yield return "Nicu Covaci";
+            yield return "Ozzy Osbourne";
+            yield return "Till Lindemann";
+            yield return "Dan Auerbach";
+            yield return "Matt Bellamy";
+        }
+
+        private static IEnumerable<string> BandNames(IEnumerable<Band> bandsList)
+        {
+            int index = 0;
+            foreach (var band in bandsList)
+            {
+                yield return index + " " + band.Name;
+                index++;
             }
         }
+
+        private static IEnumerable<string> FirstNames(IEnumerable<string> fullNames)
+        {
+            yield return "";
+        }
+
     }
 }

@@ -20,7 +20,7 @@ namespace Collections.Enumerable
         public BandsEnumerator(IEnumerable<Band> bandsCollection)
         {
             collection = bandsCollection.ToArray();
-            //până la primul apel al "MoveNext", enumeratorul este poziționat înainte de primul element
+            //until "MoveNext" is called first time, the enumerator is positioned before the first element
             currentIndex = -1;
             currentBand = null;
         }

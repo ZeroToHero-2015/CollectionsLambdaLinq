@@ -62,7 +62,6 @@ namespace Collections.List
     {
         Name,
         AlbumCount,
-        Country,
-        //NameLength
+        Country
     }
 }
