@@ -36,6 +36,20 @@ namespace Lambda
             Console.Write("{0} * {1} = ", val1, val2);
             SpecialFunctions.ExecuteFunction(prod_Function, val1, val2);
 
+
+            /**
+             * TODO 0
+             * Goto SpecialFunctions sources and resolve TODO 1, 2 and 3.
+             */
+
+            //TODO 4: Create an instance of NumberCheck
+
+            //TODO 5: Use function GetEvenNumbers to select the even numbers from numbersList collection
+            ArrayList numbersList = new ArrayList(new int[] { 0, 1, 2, 6, 8, 9, 21, 24, 10 });
+
+            //TODO 6: Print the resulted numbers
+
+
             Console.WriteLine();
         }
 

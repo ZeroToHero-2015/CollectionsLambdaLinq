@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace Lambda.Delegate
 {
     public delegate double PerformCalculation(double x, double y);
+    /**
+     * TODO 1:
+     * Create a delegate called NumberCheck which returns a boolean and has a single parameter of type int
+     */
 
     public class SpecialFunctions
     {
@@ -30,5 +34,16 @@ namespace Lambda.Delegate
             double result = function(param1, param2);
             Console.WriteLine(result);
         }
+
+        /**
+         * TODO 2: 
+         * Create a function which checks if an integer is even. The function will return True for even numbers and False for odd numbers.
+         */
+
+        /**
+         * TODO 3:
+         * Create a function called GetEvenNumbers which uses an instance of a NumberCheck delegate and an aray list of integers.
+         * The function will return a list with the even numbers.
+         */
     }
 }
