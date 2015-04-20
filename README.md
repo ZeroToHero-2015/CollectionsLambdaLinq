@@ -6,7 +6,7 @@
   without the need for an additional class to handle the enumeration.
 * Syntax:
 
-  ```
+  ```csharp
   yield return valueToReturn;
   ```
 * When execution reaches an **yield** statement, the current value of
@@ -25,19 +25,19 @@
   enumerating a collection of T elements.
 * Properties:
 
-  ```
+  ```csharp
   T Current { get; }
   //Returns the element at the current position in the collection
   ```
 * Methods:
 
-  ```
+  ```csharp
   bool MoveNext()
   //Advances the current position to the next element. Returns "true" if the
   //position was advanced, "false" if there is no next element.
   ```
 
-  ```
+  ```csharp
   void Reset()
   //Sets the enumerator position to -1 (initial position)
   ```
@@ -51,7 +51,7 @@
   using the **foreach** statement.
 * Methods:
 
-  ```
+  ```csharp
   IEnumerator<T> GetEnumerator()
   //Returns the enumerator for iterating the list
   ```
@@ -86,7 +86,7 @@
 * Values can be retrieved using the keys, simalrly to using an [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx).
   Example:
   
-  ```
+  ```csharp
   var valueToGet = dictionary[key];
   ```
 * **Main use: Storing values that need to be retrieved quickly based on a key. Retrieving a
@@ -106,3 +106,4 @@ Extra (for home)
    interface in the `Band` class. Sort a List&lt;Band&gt;, so you get the same result as when
    using the `BasicBandsComparer`, but without using a Comparer (you will make use of the parameterless
    Sort() method of the list).
+3. Any leftover //TODOs from the project.
