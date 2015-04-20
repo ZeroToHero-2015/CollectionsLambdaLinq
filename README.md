@@ -186,3 +186,94 @@ class DelegateExample
   }
 }
 ```
+-------
+##Func Delegates
+* Encapsulates a method that has N parameters  (N from [0, 16]) and returns a value of a specific type
+
+###Syntax
+``` csharp
+/**
+ * Syntax of a Func delegate which has two parameters
+ * @in T1 : type of the first parameter
+ * @in T2: type of the second parameter
+ * @out TResult: type of the return value of the method
+ */
+
+public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
+```
+
+###Advantage
+* You don't have to declare the signature of the delegate.
+* You can omit the need to explicitly create a **Func** delegate instance
+
+###Example
+```csharp
+class FuncDelegateExample
+{
+    static double fn_Sum(double val1, double val2)
+    {
+        return val1 + val2;
+    }
+
+    static double fn_Product(double val1, double val2)
+    {
+        return val1 * val2;
+    }
+
+    static double fn_Diff(double val1, double val2)
+    {
+        return val1 - val2;
+    }
+
+    static void ExecuteFunctionUsingFunc(Func<double, double, double> function, double param1, double param2)
+    {
+        double result = function(param1, param2);
+        Console.WriteLine(result);
+    }
+
+    static void Main(string[] args)
+    {
+        //Create Func Delegate instances
+        Func<double, double, double> sum_Function = new Func<double, double, double>(fn_Sum);
+        Func<double, double, double> prod_Function = new Func<double, double, double>(fn_Product);
+
+        double val1 = 2.0, val2 = 3.0;
+
+        //Call sum function
+        double sum_result = sum_Function(val1, val2);
+        Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_result);
+
+        //Call product function
+        double prod_result = prod_Function(val1, val2);
+        Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_result);
+
+        //Using sum_function reference
+        Console.Write("{0} + {1} = ", val1, val2);
+        ExecuteFunctionUsingFunc(sum_Function, val1, val2);
+
+        //Using product_function reference
+        Console.Write("{0} * {1} = ", val1, val2);
+        ExecuteFunctionUsingFunc(prod_Function, val1, val2);
+
+        //Omitting the explicit creation of Func instance
+        Console.Write("{0} - {1} = ", val1, val2);
+        ExecuteFunctionUsingFunc(fn_Diff, val1, val2);
+    }
+}
+```
+
+----------
+
+##Action Delegates
+* Similar with Func delegate but it does not return a value
+
+###Syntax
+``` csharp
+/**
+ * Syntax of a Action delegate which has two parameters
+ * @in T1 : type of the first parameter
+ * @in T2: type of the second parameter
+ */
+
+public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
+```
