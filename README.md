@@ -6,7 +6,7 @@
   without the need for an additional class to handle the enumeration.
 * Syntax:
 
-  ```
+  ```csharp
   yield return valueToReturn;
   ```
 * When execution reaches an **yield** statement, the current value of
