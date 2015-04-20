@@ -5,9 +5,9 @@
 * Allows returning an **iterator** (which can be iterated step by step)
   without the need for an additional class to handle the enumeration.
 * Syntax:
-  ~~~csharp
+  ```csharp
   yield return valueToReturn;
-  ~~~
+  ```
 * When execution reaches an **yield** statement, the current value of
   the iterator is returned, and the iterator state is memorized.
   When the method is called again, the next element is returned.
@@ -23,20 +23,20 @@
 * The **IEnumerator&lt;T&gt;** interface has properties and methods for
   enumerating a collection of T elements.
 * Properties:
-  ~~~csharp
+  ```csharp
   T Current { get; }
   //Returns the element at the current position in the collection
-  ~~~
+  ```
 * Methods:
-  ~~~csharp
+  ```csharp
   bool MoveNext()
   //Advances the current position to the next element. Returns "true" if the
   //position was advanced, "false" if there is no next element.
-  ~~~
-  ~~~csharp
+  ```
+  ```csharp
   void Reset()
   //Sets the enumerator position to -1 (initial position)
-  ~~~
+  ```
 * Any changes made to the collection while it is enumerated invalidate the
   current enumerator and cause an exception to be thrown when calling MoveNext or Reset.
 * More info: [IEnumerator&lt;T&gt;](https://msdn.microsoft.com/en-us/library/78dfe2yb.aspx)
@@ -46,10 +46,10 @@
 * Collections that implement **IEnumerable<T>** can be enumerated by
   using the **foreach** statement.
 * Methods:
-  ~~~csharp
+  ```csharp
   IEnumerator<T> GetEnumerator()
   //Returns the enumerator for iterating the list
-  ~~~
+  ```
 * More info: [IEnumerable&lt;T&gt;](https://msdn.microsoft.com/en-us/library/9eekhta0.aspx)
 
 
@@ -80,9 +80,9 @@
   struct.
 * Values can be retrieved using the keys, simalrly to using an [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx).
   Example:
-  ~~~csharp
+  ```csharp
   var valueToGet = dictionary[key];
-  ~~~
+  ```
 * **Main use: Storing values that need to be retrieved quickly based on a key. Retrieving a
   value using the key is very fast, because the Dictionary is implemented as a hash table
   (search speed depends on the hashing algorithm of the TKey type).**
