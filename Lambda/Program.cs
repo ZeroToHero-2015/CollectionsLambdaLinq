@@ -126,6 +126,11 @@ namespace Lambda
             Console.Write("{0} * {1} = ", val1, val2);
             SpecialFunctions.ExecuteFunction(prod_Function, val1, val2);
 
+            /**
+             * TODO 8 
+             * Create an instance of function created at TODO 2 and use it to print the odd numbers from numbersList collection
+             */
+
             Console.WriteLine();
         }
 
