@@ -29,20 +29,20 @@ Collections
 * Properties:
 
   ```csharp
-  T Current { get; }
   //Returns the element at the current position in the collection
+  T Current { get; }
   ```
 * Methods:
 
   ```csharp
-  bool MoveNext()
   //Advances the current position to the next element. Returns "true" if the
   //position was advanced, "false" if there is no next element.
+  bool MoveNext()
   ```
 
   ```csharp
-  void Reset()
   //Sets the enumerator position to -1 (initial position)
+  void Reset()
   ```
 * Any changes made to the collection while it is enumerated invalidate the
   current enumerator and cause an exception to be thrown when calling MoveNext or Reset.
@@ -55,8 +55,8 @@ Collections
 * Methods:
 
   ```csharp
-  IEnumerator<T> GetEnumerator()
   //Returns the enumerator for iterating the list
+  IEnumerator<T> GetEnumerator()
   ```
 * More info: [IEnumerable&lt;T&gt;](https://msdn.microsoft.com/en-us/library/9eekhta0.aspx)
 
@@ -86,7 +86,7 @@ Collections
 * A collection of **unique** keys and values corresponding to those keys.
 * Each element in the Dictionary is a [KeyValuePair&lt;TKey, TValue&gt;](https://msdn.microsoft.com/en-us/library/5tbh8a42%28v=vs.110%29.aspx)
   struct.
-* Values can be retrieved using the keys, simalrly to using an [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx).
+* Values can be retrieved using the keys, similarly to using an [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx).
   Example:
   
   ```csharp
