@@ -1,5 +1,8 @@
-1. Yield
+Collections
 ============
+
+1. Yield
+--------
 
 * Used inside a **method** or a **get** statement.
 * Allows returning an **iterator** (which can be iterated step by step)
@@ -18,7 +21,7 @@
 
 
 2. IEnumerator&lt;T&gt;, IEnumerable&lt;T&gt;
-============
+--------
 
 ### 2.1 IEnumerator&lt;T&gt; ###
 * The **IEnumerator&lt;T&gt;** interface has properties and methods for
@@ -59,7 +62,7 @@
 
 
 3. Collection&lt;T&gt;
-============
+--------
 * Base class for generic collections.
 * **Main use: Does not have a lot of implemented functionalities, but offers possibilities for
   customization via overriding basic methods in subclasses.**
@@ -68,7 +71,7 @@
 
 
 4. List&lt;T&gt;
-============
+--------
 * Provides methods to search, sort, and manipulate lists.
 * Items can be accessed using the [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx).
 * **Main use: Not suitable for customizing and extending; but performs better than most generic collections
@@ -79,7 +82,7 @@
 
 
 5. Dictionary&lt;TKey, TValue&gt;
-============
+--------
 * A collection of **unique** keys and values corresponding to those keys.
 * Each element in the Dictionary is a [KeyValuePair&lt;TKey, TValue&gt;](https://msdn.microsoft.com/en-us/library/5tbh8a42%28v=vs.110%29.aspx)
   struct.
@@ -98,8 +101,8 @@
 * More info, properties and methods: [Dictionary&lt;TKey, TValue&gt;](https://msdn.microsoft.com/en-us/library/xfhwa508.aspx)
 
 
-Extra (for home)
-============
+Collections - Extra (for home)
+--------
 1. Add an [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx) to the `BandsEnumerable`
    class and print the items using the index.
 2. Implement the [IComparable](https://msdn.microsoft.com/en-us/library/system.icomparable%28v=vs.110%29.aspx)
