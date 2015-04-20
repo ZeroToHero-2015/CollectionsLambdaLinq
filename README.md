@@ -88,7 +88,7 @@ Collections
   struct.
 * Values can be retrieved using the keys, similarly to using an [indexer](https://msdn.microsoft.com/en-us/library/6x16t2tx.aspx).
   Example:
-  
+
   ```csharp
   var valueToGet = dictionary[key];
   ```
@@ -110,3 +110,79 @@ Collections - Extra (for home)
    using the `BasicBandsComparer`, but without using a Comparer (you will make use of the parameterless
    Sort() method of the list).
 3. Any leftover //TODOs from the project.
+
+
+--------
+Lambda Expressions, Delegates and Anonymous Functions
+===================
+--------
+##Delegates
+###What is a Delegate?
+* A **delegate** is a type which  holds the method(s) reference in an object.
+* A **delegate** is a type that represents references to methods with a particular parameter list and return type.
+* A type safe function pointer. (similar with C/C++ function pointers, but type safe)
+
+###Syntax
+``` csharp
+public delegate double PerformCalculation(double x, double y);
+```
+
+###When you use a delegate?
+* **Delegates** are used to pass methods as arguments to other methods.
+* You can use it as a callback to an event.
+
+###How you create it?
+* In order to create a delegate you can associate its instance with any method with a compatible signature and return type.
+
+###Advantages
+* Encapsulating the method's call from caller
+* Used to call a method asynchronously
+* Dynamic binding
+
+###Example
+```csharp
+public delegate double PerformCalculation(double val1, double val2);
+class DelegateExample
+{
+  static double fn_Sum(double val1, double val2)
+  {
+      return val1 + val2;
+  }
+
+  static double fn_Product(double val1, double val2)
+  {
+      return val1 * val2;
+  }
+
+  static void ExecuteFunction(PerformCalculation function, double param1, double param2)
+  {
+      double result = function(param1, param2);
+      Console.WriteLine(result);
+  }
+
+  static void Main(string[] args)
+  {
+      // Create Delegate instances
+      PerformCalculation sum_Function = new PerformCalculation(fn_Sum);
+      PerformCalculation prod_Function = new PerformCalculation(fn_Product);
+
+      double val1 = 2.0, val2 = 3.0;
+
+      //Call sum function
+      double sum_result = sum_Function(val1, val2);
+      Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_result);
+
+      //Call product function
+      double prod_result = prod_Function(val1, val2);
+      Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_result);
+
+      //Using sum_function reference
+      Console.Write("{0} + {1} = ", val1, val2);
+      ExecuteFunction(sum_Function, val1, val2);
+
+      //Using product_function reference
+      Console.Write("{0} * {1} = ", val1, val2);
+      ExecuteFunction(prod_Function, val1, val2);
+  }
+}
+```
