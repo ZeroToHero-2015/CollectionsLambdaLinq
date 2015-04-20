@@ -83,6 +83,12 @@ namespace Lambda
             Console.Write("{0} - {1} = ", val1, val2);
             SpecialFunctions.ExecuteFunctionUsingFunc(SpecialFunctions.Diff, val1, val2);
 
+            ArrayList numbersList = new ArrayList(new int[] { 0, 1, 2, 6, 8, 9, 21, 24, 10 });
+            /**
+             * TODO 7 
+             * Create an instance of function created at TODO 2 and use it to print the odd numbers from numbersList collection
+             */
+
             Console.WriteLine();
         }
 
