@@ -106,3 +106,4 @@ Extra (for home)
    interface in the `Band` class. Sort a List&lt;Band&gt;, so you get the same result as when
    using the `BasicBandsComparer`, but without using a Comparer (you will make use of the parameterless
    Sort() method of the list).
+3. Any leftover //TODOs from the project.
