@@ -1,10 +1,10 @@
-﻿using Lambda.Delegate;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lambda.Delegate;
+using System.Collections;
 
 namespace Lambda
 {
@@ -92,6 +92,43 @@ namespace Lambda
             Console.WriteLine();
         }
 
+        static void AnonymousFunctExample()
+        {
+            Console.WriteLine("=====Example 3 (Anonymous Functions)===");
+
+            //Create a Func Delegate instance
+            Func<double, double, double> sum_Function = delegate(double var1, double var2)
+            {
+                return var1 + var2;
+            };
+            //Create a Delegate instance
+            PerformCalculation prod_Function = delegate(double var1, double var2)
+            {
+                return var1 * var2;
+            };
+
+
+            double val1 = 4.0, val2 = 3.0;
+
+            //Call sum function
+            double sum_result = sum_Function(val1, val2);
+            Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_result);
+
+            //Call product function
+            double prod_result = prod_Function(val1, val2);
+            Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_result);
+
+            //Using sum_function reference
+            Console.Write("{0} + {1} = ", val1, val2);
+            SpecialFunctions.ExecuteFunctionUsingFunc(sum_Function, val1, val2);
+
+            //Using product_function reference
+            Console.Write("{0} * {1} = ", val1, val2);
+            SpecialFunctions.ExecuteFunction(prod_Function, val1, val2);
+
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             //run Delegate example
@@ -99,6 +136,9 @@ namespace Lambda
 
             //run Func Delegate example
             FuncDelegateExample();
+
+            //run Anonymous functions example
+            AnonymousFunctExample();
 
             Console.ReadKey();
         }
