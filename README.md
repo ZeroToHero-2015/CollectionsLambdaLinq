@@ -277,3 +277,83 @@ class FuncDelegateExample
 
 public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
 ```
+
+---------
+##Anonymous functions
+* Anonymous methods let you declare a method body without giving it a name.
+* Can be used to pass a code block as a delegate parameter.
+* Cannot be called explicit.
+* Anonymous methods enable you to omit the parameter list and can be converted to delegates with a variety of signatures.
+
+###Syntax
+```csharp
+delegate(in T1, in T2)
+{
+  //code block
+}
+```
+
+###Usage
+```csharp
+Function<double, double, double> maxFunction = delegate(double var1, double var2)
+                                              {
+                                                if (var1 > var2)
+                                                  return var1;
+                                                else
+                                                  return var2;
+                                              }
+```
+###Advantage
+* Reduce the coding overhead in instantiating delegates (you don't have to create a separate method).
+* Are more flexible than lambda expressions.
+
+###Example
+```csharp
+public delegate double PerformCalculation(double val1, double val2);
+class AnonymousExample
+{
+    static void ExecuteFunctionUsingFunc(Func<double, double, double> function, double param1, double param2)
+    {
+        double result = function(param1, param2);
+        Console.WriteLine(result);
+    }
+
+    static void ExecuteFunction(PerformCalculation function, double param1, double param2)
+    {
+        double result = function(param1, param2);
+        Console.WriteLine(result);
+    }
+
+    static void Main(string[] args)
+        //Create a Func Delegate instance
+        Func<double, double, double> sum_Function = delegate(double var1, double var2)
+                                                    {
+                                                      return var1 + var2;
+                                                    };
+
+        //Create a Delegate instance
+        PerformCalculation prod_Function = delegate(double var1, double var2)
+                                            {
+                                                return var1 * var2;
+                                            };
+
+        double val1 = 1.0, val2 = 5.0;
+
+        //Call sum function
+        double sum_result = sum_Function(val1, val2);
+        Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_result);
+
+        //Call product function
+        double prod_result = prod_Function(val1, val2);
+        Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_result);
+
+        //Using sum_function reference
+        Console.Write("{0} + {1} = ", val1, val2);
+        ExecuteFunctionUsingFunc(sum_Function, val1, val2);
+
+        //Using product_function reference
+        Console.Write("{0} * {1} = ", val1, val2);
+        ExecuteFunction(prod_Function, val1, val2);
+    }
+}
+```
