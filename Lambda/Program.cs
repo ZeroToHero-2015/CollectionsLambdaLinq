@@ -53,10 +53,46 @@ namespace Lambda
             Console.WriteLine();
         }
 
+        public static void FuncDelegateExample()
+        {
+            Console.WriteLine("=====Example 2 (Func Delegate)===");
+
+            //Create Func Delegate instances
+            Func<double, double, double> sum_Function = new Func<double, double, double>(SpecialFunctions.Sum);
+            Func<double, double, double> prod_Function = new Func<double, double, double>(SpecialFunctions.Product);
+
+            double val1 = 4.0, val2 = 5.0;
+
+            //Call sum function
+            double sum_result = sum_Function(val1, val2);
+            Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_result);
+
+            //Call product function
+            double prod_result = prod_Function(val1, val2);
+            Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_result);
+
+            //Using sum_function reference
+            Console.Write("{0} + {1} = ", val1, val2);
+            SpecialFunctions.ExecuteFunctionUsingFunc(sum_Function, val1, val2);
+
+            //Using product_function reference
+            Console.Write("{0} * {1} = ", val1, val2);
+            SpecialFunctions.ExecuteFunctionUsingFunc(prod_Function, val1, val2);
+
+            //Omitting the explicit creation of Func instance
+            Console.Write("{0} - {1} = ", val1, val2);
+            SpecialFunctions.ExecuteFunctionUsingFunc(SpecialFunctions.Diff, val1, val2);
+
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             //run Delegate example
             DelegateExample();
+
+            //run Func Delegate example
+            FuncDelegateExample();
 
             Console.ReadKey();
         }

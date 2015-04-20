@@ -35,6 +35,12 @@ namespace Lambda.Delegate
             Console.WriteLine(result);
         }
 
+        public static void ExecuteFunctionUsingFunc(Func<double, double, double> function, double param1, double param2)
+        {
+            double result = function(param1, param2);
+            Console.WriteLine(result);
+        }
+
         /**
          * TODO 2: 
          * Create a function which checks if an integer is even. The function will return True for even numbers and False for odd numbers.
