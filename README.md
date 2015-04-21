@@ -1,29 +1,11 @@
 Collections
 ============
 
-1. Yield
+
+1. IEnumerator&lt;T&gt;, IEnumerable&lt;T&gt;
 --------
 
-* Used inside a **method** or a **get** statement.
-* Allows returning an **iterator** (which can be iterated step by step)
-  without the need for an additional class to handle the enumeration.
-* Syntax:
-
-  ```csharp
-  yield return valueToReturn;
-  ```
-* When execution reaches an **yield** statement, the current value of
-  the iterator is returned, and the iterator state is memorized.
-  When the method is called again, the next element is returned.
-* **Iterators** can be iterated using a **foreach** loop.
-* More info: [yield](https://msdn.microsoft.com/en-us/library/9k7k7cf0.aspx),
-  [iterators](https://msdn.microsoft.com/en-us/library/dscyy5s0.aspx)
-
-
-2. IEnumerator&lt;T&gt;, IEnumerable&lt;T&gt;
---------
-
-### 2.1 IEnumerator&lt;T&gt; ###
+### 1.1 IEnumerator&lt;T&gt; ###
 * The **IEnumerator&lt;T&gt;** interface has properties and methods for
   enumerating a collection of T elements.
 * Properties:
@@ -48,7 +30,7 @@ Collections
   current enumerator and cause an exception to be thrown when calling MoveNext or Reset.
 * More info: [IEnumerator&lt;T&gt;](https://msdn.microsoft.com/en-us/library/78dfe2yb.aspx)
 
-###2.2 IEnumerable&lt;T&gt;###
+###1.2 IEnumerable&lt;T&gt;###
 * Exposes an **enumerator** to iterate over a collection of T.
 * Collections that implement **IEnumerable<T>** can be enumerated by
   using the **foreach** statement.
@@ -59,6 +41,25 @@ Collections
   IEnumerator<T> GetEnumerator()
   ```
 * More info: [IEnumerable&lt;T&gt;](https://msdn.microsoft.com/en-us/library/9eekhta0.aspx)
+
+
+2. Yield
+--------
+
+* Used inside a **method** or a **get** statement.
+* Allows returning an **iterator** (which can be iterated step by step)
+  without the need for an additional class to handle the enumeration.
+* Syntax:
+
+  ```csharp
+  yield return valueToReturn;
+  ```
+* When execution reaches an **yield** statement, the current value of
+  the iterator is returned, and the iterator state is memorized.
+  When the method is called again, the next element is returned.
+* **Iterators** can be iterated using a **foreach** loop.
+* More info: [yield](https://msdn.microsoft.com/en-us/library/9k7k7cf0.aspx),
+  [iterators](https://msdn.microsoft.com/en-us/library/dscyy5s0.aspx)
 
 
 3. Collection&lt;T&gt;
