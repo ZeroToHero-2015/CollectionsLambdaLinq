@@ -115,7 +115,7 @@ Collections - Extra (for home)
 --------
 Lambda Expressions, Delegates and Anonymous Functions
 ===================
---------
+
 ##Delegates
 ###What is a Delegate?
 * A **delegate** is a type which  holds the method(s) reference in an object.
