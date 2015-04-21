@@ -24,11 +24,28 @@ namespace Collections
 
         static void Main(string[] args)
         {
-            YieldExample();
-            //EnumerableExample();
+            EnumerableExample();
+            //YieldExample();
             //CollectionExample();
             //ListExample();
             //DictionaryExample();
+        }
+
+        private static void EnumerableExample()
+        {
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------Enumerable Example-----------------------------");
+
+            //Enumerating example
+            var bands = new BandsEnumerable(BandsArray);
+            var enumerator = bands.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var band = enumerator.Current;
+                Console.WriteLine("{0} ({1}, {2}): {3} albums.", band.Name, band.Genre, band.Country, band.StudioAlbums);
+            }
+
+            //TODO 2: Change "BandsEnumerator" to enumerate from last element to first.
         }
 
         private static void YieldExample()
@@ -36,6 +53,7 @@ namespace Collections
             Console.WriteLine();
             Console.WriteLine("-----------------------------Yield Example-----------------------------");
 
+            //Enumerating an yield list
             foreach (var frontman in FrontmenList())
             {
                 Console.WriteLine(frontman);
@@ -43,6 +61,7 @@ namespace Collections
 
             Console.WriteLine();
 
+            //Projecting objects in a different form using yield
             var bandNames = BandNames(new List<Band>(BandsArray));
             foreach (var bandName in bandNames)
             {
@@ -59,23 +78,6 @@ namespace Collections
             }
         }
 
-        private static void EnumerableExample()
-        {
-            Console.WriteLine();
-            Console.WriteLine("-----------------------------Enumerable Example-----------------------------");
-
-            var bands = new BandsEnumerable(BandsArray);
-
-            var enumerator = bands.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                var band = enumerator.Current;
-                Console.WriteLine("{0} ({1}, {2}): {3} albums.", band.Name, band.Genre, band.Country, band.StudioAlbums);
-            }
-
-            //TODO 2: Change "BandsEnumerator" to enumerate from last element to first.
-        }
-
         private static void CollectionExample()
         {
             Console.WriteLine();
@@ -83,12 +85,15 @@ namespace Collections
 
             var bandsCollection = new BandsCollection(BandsArray);
 
+            //Custom insert example
             bandsCollection.Insert(0, new Band("Guta", 0, "", ""));
             bandsCollection.Insert(3, new Band("Salam", 0, "", ""));
             bandsCollection.Insert(8, new Band("Susanu", 0, "", ""));
 
+            //Custom item set example
             bandsCollection[3] = new Band("Romeo Fantastik", 0, "", "");
 
+            //Custom remove example
             bandsCollection.RemoveAt(8);
 
             Console.WriteLine();
@@ -108,6 +113,7 @@ namespace Collections
 
             var bandsList = new List<Band>(BandsArray);
 
+            //Custom comparer example
             bandsList.Sort(new BasicBandsComparer());
             //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
             //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Name));
@@ -122,6 +128,7 @@ namespace Collections
 
             Console.WriteLine();
 
+            //Add/Get range example
             var bandsToAdd = new[]
             {
                 new Band("Guta", 0, "", ""),
@@ -137,6 +144,7 @@ namespace Collections
 
             Console.WriteLine();
 
+            //IndexOf uses Object.GetHashCode, which is a reference comparer by default
             var indexNewGuta = bandsList.IndexOf(new Band("Guta", 0, "", ""));
             Console.WriteLine("Index of new Guta is {0}", indexNewGuta);
             var indexRefGuta = bandsList.IndexOf(bandsToAdd[0]);
@@ -150,12 +158,14 @@ namespace Collections
             Console.WriteLine();
             Console.WriteLine("-----------------------------Dictionary Example-----------------------------");
 
+            //Adding items example
             var bandsDictionary = new Dictionary<string, Band>();
             foreach (var band in BandsArray)
             {
                 bandsDictionary.Add(band.Name, band);
             }
 
+            //Enumerating the KeyValue pairs
             foreach (var keyValuePair in bandsDictionary)
             {
                 //TODO 5: Change to display key and albums count
@@ -164,7 +174,7 @@ namespace Collections
 
             Console.WriteLine();
 
-            //TODO 6: See what happens for key not present in dictionary.
+            //Retrieving value based on key example
             var bandToGet = bandsDictionary["Muse"];
             Console.WriteLine("{0} {1} {2}", bandToGet.Name, bandToGet.Genre, bandToGet.Country);
 
