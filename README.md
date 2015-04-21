@@ -127,11 +127,11 @@ Lambda Expressions, Delegates and Anonymous Functions
 public delegate double PerformCalculation(double x, double y);
 ```
 
-###When you use a delegate?
+###When do you use a delegate?
 * **Delegates** are used to pass methods as arguments to other methods.
 * You can use it as a callback to an event.
 
-###How you create it?
+###How do you create it?
 * In order to create a delegate you can associate its instance with any method with a compatible signature and return type.
 
 ###Advantages
@@ -188,7 +188,7 @@ class DelegateExample
 ```
 -------
 ##Func Delegates
-* Encapsulates a method that has N parameters  (N from [0, 16]) and returns a value of a specific type
+* Encapsulates a method that has N parameters  (N from [0, 16]) and **returns a value** of a specific type
 
 ###Syntax
 ``` csharp
@@ -204,7 +204,7 @@ public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
 
 ###Advantage
 * You don't have to declare the signature of the delegate.
-* You can omit the need to explicitly create a **Func** delegate instance
+* There is no need to explicitly create a **Func** delegate instance (you can just pass the method name, and the compiler will bind it dynamically).
 
 ###Example
 ```csharp
@@ -265,7 +265,7 @@ class FuncDelegateExample
 ----------
 
 ##Action Delegates
-* Similar with Func delegate but it does not return a value
+* Similar with Func delegate but it **does not return a value**.
 
 ###Syntax
 ``` csharp
@@ -282,8 +282,8 @@ public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
 ##Anonymous functions
 * Anonymous methods let you declare a method body without giving it a name.
 * Can be used to pass a code block as a delegate parameter.
-* Cannot be called explicit.
-* Anonymous methods enable you to omit the parameter list and can be converted to delegates with a variety of signatures.
+* Cannot be called explicitly.
+* Anonymous methods enable you to omit the parameter list.
 
 ###Syntax
 ```csharp
