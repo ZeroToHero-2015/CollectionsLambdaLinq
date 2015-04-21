@@ -70,11 +70,11 @@ namespace Collections
 
             Console.WriteLine();
 
-            //TODO 1: Implement "FirstNames" to return only first names, using foreach, yield, and string.Split(Char[])
-            var firstNames = FirstNames(FrontmenList());
-            foreach (var firstName in firstNames)
+            //TODO 1: Implement "BritishBands" to return only bands that have Country == "England". 
+            var britishBands = BritishBands(new List<Band>(BandsArray));
+            foreach (var britishBand in britishBands)
             {
-                Console.WriteLine(firstName);
+                Console.WriteLine(britishBand.Name);
             }
         }
 
@@ -206,9 +206,9 @@ namespace Collections
             }
         }
 
-        private static IEnumerable<string> FirstNames(IEnumerable<string> fullNames)
+        private static IEnumerable<Band> BritishBands(IEnumerable<Band> bandsList)
         {
-            yield return "";
+            yield return new Band("", 0, "", "");
         }
 
     }
