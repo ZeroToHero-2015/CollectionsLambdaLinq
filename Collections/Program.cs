@@ -24,9 +24,9 @@ namespace Collections
 
         static void Main(string[] args)
         {
-            //EnumerableExample();
+            EnumerableExample();
             //YieldExample();
-            CollectionExample();
+            //CollectionExample();
             //ListExample();
             //DictionaryExample();
         }
