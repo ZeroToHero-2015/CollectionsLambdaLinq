@@ -464,3 +464,52 @@ class LambdaExample
 }
 ```
 ####More info: [Lambda expressions](http://www.codeproject.com/Articles/17575/Lambda-Expressions-and-Expression-Trees-An-Introdu)
+
+
+## 4.Closure
+* A lambda expression is called *closure* when it captures variables from the outer scope.
+
+####Example 1
+```csharp
+//Read example
+int factor = 4;
+Func<int, int> scaleWithFactor = x => x * factor;
+int result = scaleWithFactor(5); //20
+factor = 10;
+int result2 = scaleWithFactor(10); //100
+```
+
+####Example 2
+```csharp
+//Modify example
+int counter = 10;
+Action resetCounter = () =>
+                      {
+      		            counter = 5;
+      	             };
+//counter = 10
+resetCounter();
+//counter = 0
+```
+
+###Example 3
+```csharp
+static void Main(string[] args)
+{
+    var inc = GetIncFunc();
+    Console.WriteLine(inc(2));
+    Console.WriteLine(inc(4));
+    Console.WriteLine(GetIncFunc(5));
+}
+
+public static Func<int,int> GetIncFunc()
+{
+    var incrementedValue = 0;
+    Func<int, int> inc = delegate(int var1)
+                            {
+                                incrementedValue = incrementedValue + 1;
+                                return var1 + incrementedValue;
+                            };
+    return inc;
+}
+```
