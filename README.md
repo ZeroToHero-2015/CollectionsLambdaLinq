@@ -117,7 +117,7 @@ Collections - Extra (for home)
 Lambda Expressions, Delegates and Anonymous Functions
 ===================
 
-##Delegates
+##1. Delegates
 ###What is a Delegate?
 * A **delegate** is a type which  holds the method(s) reference in an object.
 * A **delegate** is a type that represents references to methods with a particular parameter list and return type.
@@ -188,7 +188,7 @@ class DelegateExample
 }
 ```
 -------
-##Func Delegates
+##1.2 Func Delegates
 * Encapsulates a method that has N parameters  (N from [0, 16]) and **returns a value** of a specific type
 
 ###Syntax
@@ -265,7 +265,7 @@ class FuncDelegateExample
 
 ----------
 
-##Action Delegates
+##1.3 Action Delegates
 * Similar with Func delegate but it **does not return a value**.
 
 ###Syntax
@@ -280,7 +280,7 @@ public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
 ```
 
 ---------
-##Anonymous functions
+##2. Anonymous functions
 * Anonymous methods let you declare a method body without giving it a name.
 * Can be used to pass a code block as a delegate parameter.
 * Cannot be called explicitly.
@@ -356,5 +356,106 @@ class AnonymousExample
         Console.Write("{0} * {1} = ", val1, val2);
         ExecuteFunction(prod_Function, val1, val2);
     }
+}
+```
+##3. Lambda expressions
+* A lambda expression is an anonymous function which can be used to create delegates or expression tree types.
+* Can be used to pass local functions as arguments or pass them as value of a function calls.
+* They are usually used for writing **LINQ** query expressions.
+
+###Syntax
+```csharp
+(input parameters) => execution code
+```
+* Left hand side represents zero or more parameters
+* The right hand side represents the statement body
+
+###Usage
+```csharp
+/**
+ * Input : x and y
+ * Expression: x == y
+ * Usage: tests if two variables are equal.
+ */
+(x, y) => x == y
+```
+
+###Advantage
+* It allows you to write a method in the same place you are going to use it.
+* No need to specify the name of the function, its return type, and its access modifier.
+* It especially useful in places where a method is being used only once, and the method definition is short.
+* When reading the code you don't need to look elsewhere for the method's definition.
+
+
+###Differences between Lambda expressions and Anonymous methods
+* Lambda expressions doesn't use **delegate** keyword
+* An anonymous method explicitly requires you to define the parameter types and the return type for a method
+```csharp
+//Anonymous method
+Func<double, double, double> anonymousSum = delegate(double x, double y)
+                                            {
+                                              return x + y;
+                                            };
+//Lambda expression
+Func<double, double, double> lambdaSum = (x, y) => x + y;
+```
+
+###Example
+```csharp
+public delegate double PerformCalculation(double val1, double val2);
+class LambdaExample
+{
+  static void ExecuteFunctionUsingFunc(Func<double, double, double> function, double param1, double param2)
+  {
+      double result = function(param1, param2);
+      Console.WriteLine(result);
+  }
+
+  static void ExecuteFunction(PerformCalculation function, double param1, double param2)
+  {
+      double result = function(param1, param2);
+      Console.WriteLine(result);
+  }
+
+  public static void main(String args[])
+  {
+    //Use lamba expression to create a Func delegate instance
+    Func<double, double, double> sum_Function = (double var1, double var2) => var1 + var2;
+
+    //Use lambda expression without data type to create a Func delegate instance
+    Func<double, double, double> sum_Function_withoutType = (var1, var2) => var1 + var2;
+
+    //Use lamba expression to create a delegate instance
+    PerformCalculation prod_Function = (double var1, double var2) => var1 * var2;
+
+    //Use lamba expression without data type to create a delegate instance
+    PerformCalculation prod_Function_withoutType = (var1, var2) => var1 * var2;
+
+    double val1 = 4.0, val2 = 3.0;
+
+    //Call sum function
+    double sum_Result = sum_Function(val1, val2);
+    Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_Result);
+
+    //Call product function
+    double prod_Result = prod_Function(val1, val2);
+    Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_Result);
+
+    //Using sum_function reference
+    Console.Write("{0} + {1} = ", val1, val2);
+    ExecuteFunctionUsingFunc(sum_Function, val1, val2);
+
+    //Using product_function reference
+    Console.Write("{0} * {1} = ", val1, val2);
+    ExecuteFunction(prod_Function, val1, val2);
+
+    //Omitting the explicit creation of a Func instance
+    Console.Write("{0} - {1} = ", val1, val2);
+    ExecuteFunctionUsingFunc((var1, var2) => var1 - var2, val1, val2);
+
+    //Omitting the explicit creation of a delegate instance
+    Console.Write("{0} - {1} = ", val1, val2);
+    ExecuteFunction((var1, var2) => var1 - var2, val1, val2);
+  }
 }
 ```
