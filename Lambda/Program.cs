@@ -200,6 +200,29 @@ namespace Lambda
             Console.WriteLine();
         }
 
+        private static Func<int, int> GetIncFunc()
+        {
+            var incrementedValue = 0;
+            Func<int, int> inc = delegate(int var1)
+            {
+                incrementedValue = incrementedValue + 1;
+                return var1 + incrementedValue;
+            };
+            return inc;
+        }
+
+        private static void ClosureExample()
+        {
+            Console.WriteLine("=====Example 5 (Closure example)===");
+
+            Func<int, int> incFunction = GetIncFunc();
+            Console.WriteLine(incFunction(2));
+            Console.WriteLine(incFunction(4));
+            Console.WriteLine(GetIncFunc()(5));
+
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             //run Delegate example
@@ -213,6 +236,9 @@ namespace Lambda
 
             //run Lambda expressions example
             LambdaExample();
+
+            //run Closure example
+            ClosureExample();
 
             Console.ReadKey();
         }
