@@ -187,6 +187,8 @@ class DelegateExample
   }
 }
 ```
+
+####More info:  [Delegates](https://msdn.microsoft.com/en-us/library/ms173171.aspx)
 -------
 ##1.2 Func Delegates
 * Encapsulates a method that has N parameters  (N from [0, 16]) and **returns a value** of a specific type
@@ -262,7 +264,7 @@ class FuncDelegateExample
     }
 }
 ```
-
+####More info: [Func Delegate](https://msdn.microsoft.com/en-us/library/bb534960%28v=vs.110%29.aspx)
 ----------
 
 ##1.3 Action Delegates
@@ -278,7 +280,7 @@ class FuncDelegateExample
 
 public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
 ```
-
+####More info: [Action Delegate](https://msdn.microsoft.com/en-us/library/system.action.aspx)
 ---------
 ##2. Anonymous functions
 * Anonymous methods let you declare a method body without giving it a name.
@@ -358,6 +360,8 @@ class AnonymousExample
     }
 }
 ```
+####More info: [Anonymous functions](https://msdn.microsoft.com/en-us/library/bb882516.aspx)
+
 ##3. Lambda expressions
 * A lambda expression is an anonymous function which can be used to create delegates or expression tree types.
 * Can be used to pass local functions as arguments or pass them as value of a function calls.
@@ -459,3 +463,4 @@ class LambdaExample
   }
 }
 ```
+####More info: [Lambda expressions](http://www.codeproject.com/Articles/17575/Lambda-Expressions-and-Expression-Trees-An-Introdu)
