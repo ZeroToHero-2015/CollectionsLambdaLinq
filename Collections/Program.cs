@@ -45,7 +45,7 @@ namespace Collections
                 Console.WriteLine("{0} ({1}, {2}): {3} albums.", band.Name, band.Genre, band.Country, band.StudioAlbums);
             }
 
-            //TODO 2: Change "BandsEnumerator" to enumerate from last element to first.
+            //TODO 1: Change "BandsEnumerator" to enumerate from last element to first.
         }
 
         private static void YieldExample()
@@ -70,7 +70,7 @@ namespace Collections
 
             Console.WriteLine();
 
-            //TODO 1: Implement "BritishBands" to return only bands that have Country == "England". 
+            //TODO 2: Implement "BritishBands" to return only bands that have Country == "England". 
             var britishBands = BritishBands(new List<Band>(BandsArray));
             foreach (var britishBand in britishBands)
             {
@@ -88,7 +88,7 @@ namespace Collections
             //Custom insert example
             bandsCollection.Insert(0, new Band("Guta", 0, "", ""));
             bandsCollection.Insert(3, new Band("Salam", 0, "", ""));
-            bandsCollection.Insert(8, new Band("Susanu", 0, "", ""));
+            bandsCollection.Insert(9, new Band("Susanu", 0, "", ""));
 
             //Custom item set example
             bandsCollection[3] = new Band("Romeo Fantastik", 0, "", "");
