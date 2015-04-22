@@ -14,7 +14,7 @@ namespace Collections.Collection
         {
             base.InsertItem(index, item);
 
-            string bandAfter = "before " + Items[index + 1].Name;
+            string bandAfter = (index + 1) >= Items.Count ? "on the last position" : "before " + Items[index + 1].Name;
             string bandBefore = index > 0 ? "after " + Items[index - 1].Name : "on the first position";
 
             Console.WriteLine("Band {0} was inserted into the collection at index {1}, {2} and {3}", item.Name, index, bandBefore, bandAfter);
@@ -23,10 +23,12 @@ namespace Collections.Collection
         protected override void RemoveItem(int index)
         {
             var bandToBeRemoved = Items[index].Name;
-      
+
             base.RemoveItem(index);
 
-            Console.WriteLine("Removed {0}, now {1} is at index {2}", bandToBeRemoved, Items[index].Name, index);
+            var newBandAtIndex = index >= Items.Count ? "it was the last band" : String.Format("now {0} is at index {1}", Items[index].Name, index);
+
+            Console.WriteLine("Removed {0}, {1}", bandToBeRemoved, newBandAtIndex);
         }
 
         protected override void SetItem(int index, Band item)
