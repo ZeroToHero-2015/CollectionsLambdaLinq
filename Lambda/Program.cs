@@ -42,7 +42,7 @@ namespace Lambda
              * Goto SpecialFunctions sources and resolve TODO 1, 2 and 3.
              */
 
-            //TODO 4: Create an instance of NumberCheck
+            //TODO 4: Create an instance of NumberCheck (TODO 1)
 
             //TODO 5: Use function GetEvenNumbers to select the even numbers from numbersList collection
             ArrayList numbersList = new ArrayList(new int[] { 0, 1, 2, 6, 8, 9, 21, 24, 10 });
@@ -183,6 +183,20 @@ namespace Lambda
             Console.Write("{0} - {1} = ", val1, val2);
             SpecialFunctions.ExecuteFunction((var1, var2) => var1 - var2, val1, val2);
 
+            ArrayList numbersList = new ArrayList(new int[] { 0, 1, 2, 6, 8, 9, 21, 24, 10 });
+            /**
+             * TODO 9
+             *
+             * Create a lambda expression which receives two parameters and returns the biggest number
+             * and use it to extract the biggest number from numbersList collection.
+             */
+
+
+            /**
+             * TODO 10 (for home)
+             * Use the lambda expression from TODO 9  to sort the collection ascending.
+             */
+ 
             Console.WriteLine();
         }
 
