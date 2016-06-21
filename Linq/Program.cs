@@ -21,6 +21,11 @@ namespace Linq
         static void Main(string[] args)
         {
             WhereExample();
+            //SelectExample();
+            //SelectManyExample();
+            //AggregateExample();
+            //GroupByExample();
+            //SumMaxMinExample();
         }
 
         private static void WhereExample()
