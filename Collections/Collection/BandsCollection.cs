@@ -14,8 +14,8 @@ namespace Collections.Collection
         {
             base.InsertItem(index, item);
 
-            string bandAfter = (index + 1) >= Items.Count ? "on the last position" : "before " + Items[index + 1].Name;
-            string bandBefore = index > 0 ? "after " + Items[index - 1].Name : "on the first position";
+            string bandAfter = (index + 1) >= Items.Count ? "on the last position" : $"before {Items[index + 1].Name}";
+            string bandBefore = index > 0 ? $"after {Items[index - 1].Name}" : "on the first position";
 
             Console.WriteLine($"Band {item.Name} was inserted into the collection at index {index}, {bandBefore} and {bandAfter}");
         }
