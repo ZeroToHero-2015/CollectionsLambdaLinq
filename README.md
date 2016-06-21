@@ -30,7 +30,7 @@ Collections
   current enumerator and cause an exception to be thrown when calling MoveNext or Reset.
 * More info: [IEnumerator&lt;T&gt;](https://msdn.microsoft.com/en-us/library/78dfe2yb.aspx)
 
-###1.2 IEnumerable&lt;T&gt;###
+### 1.2 IEnumerable&lt;T&gt;###
 * Exposes an **enumerator** to iterate over a collection of T.
 * Collections that implement **IEnumerable<T>** can be enumerated by
   using the **foreach** statement.
@@ -117,30 +117,30 @@ Collections - Extra (for home)
 Lambda Expressions, Delegates and Anonymous Functions
 ===================
 
-##1. Delegates
-###What is a Delegate?
+## 1. Delegates
+### What is a Delegate?
 * A **delegate** is a type which  holds the method(s) reference in an object.
 * A **delegate** is a type that represents references to methods with a particular parameter list and return type.
 * A type safe function pointer. (similar with C/C++ function pointers, but type safe)
 
-###Syntax
+### Syntax
 ``` csharp
 public delegate double PerformCalculation(double x, double y);
 ```
 
-###When do you use a delegate?
+### When do you use a delegate?
 * **Delegates** are used to pass methods as arguments to other methods.
 * You can use it as a callback to an event.
 
-###How do you create it?
+### How do you create it?
 * In order to create a delegate you can associate its instance with any method with a compatible signature and return type.
 
-###Advantages
+### Advantages
 * Encapsulating the method's call from caller
 * Used to call a method asynchronously
 * Dynamic binding
 
-###Example
+### Example
 ```csharp
 public delegate double PerformCalculation(double val1, double val2);
 class DelegateExample
@@ -188,12 +188,12 @@ class DelegateExample
 }
 ```
 
-####More info:  [Delegates](https://msdn.microsoft.com/en-us/library/ms173171.aspx)
+#### More info:  [Delegates](https://msdn.microsoft.com/en-us/library/ms173171.aspx)
 -------
-##1.2 Func Delegates
+## 1.2 Func Delegates
 * Encapsulates a method that has N parameters  (N from [0, 16]) and **returns a value** of a specific type
 
-###Syntax
+### Syntax
 ``` csharp
 /**
  * Syntax of a Func delegate which has two parameters
@@ -205,11 +205,11 @@ class DelegateExample
 public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
 ```
 
-###Advantage
+### Advantage
 * You don't have to declare the signature of the delegate.
 * There is no need to explicitly create a **Func** delegate instance (you can just pass the method name, and the compiler will bind it dynamically).
 
-###Example
+### Example
 ```csharp
 class FuncDelegateExample
 {
@@ -264,13 +264,13 @@ class FuncDelegateExample
     }
 }
 ```
-####More info: [Func Delegate](https://msdn.microsoft.com/en-us/library/bb534960%28v=vs.110%29.aspx)
+#### More info: [Func Delegate](https://msdn.microsoft.com/en-us/library/bb534960%28v=vs.110%29.aspx)
 ----------
 
-##1.3 Action Delegates
+## 1.3 Action Delegates
 * Similar with Func delegate but it **does not return a value**.
 
-###Syntax
+### Syntax
 ``` csharp
 /**
  * Syntax of a Action delegate which has two parameters
@@ -280,15 +280,15 @@ class FuncDelegateExample
 
 public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
 ```
-####More info: [Action Delegate](https://msdn.microsoft.com/en-us/library/system.action.aspx)
+#### More info: [Action Delegate](https://msdn.microsoft.com/en-us/library/system.action.aspx)
 ---------
-##2. Anonymous functions
+## 2. Anonymous functions
 * Anonymous methods let you declare a method body without giving it a name.
 * Can be used to pass a code block as a delegate parameter.
 * Cannot be called explicitly.
 * Anonymous methods enable you to omit the parameter list.
 
-###Syntax
+### Syntax
 ```csharp
 delegate(in T1, in T2)
 {
@@ -296,7 +296,7 @@ delegate(in T1, in T2)
 }
 ```
 
-###Usage
+### Usage
 ```csharp
 Function<double, double, double> maxFunction = delegate(double var1, double var2)
                                               {
@@ -306,11 +306,11 @@ Function<double, double, double> maxFunction = delegate(double var1, double var2
                                                   return var2;
                                               }
 ```
-###Advantage
+### Advantage
 * Reduce the coding overhead in instantiating delegates (you don't have to create a separate method).
 * Are more flexible than lambda expressions.
 
-###Example
+### Example
 ```csharp
 public delegate double PerformCalculation(double val1, double val2);
 class AnonymousExample
@@ -360,21 +360,22 @@ class AnonymousExample
     }
 }
 ```
-####More info: [Anonymous functions](https://msdn.microsoft.com/en-us/library/bb882516.aspx)
 
-##3. Lambda expressions
+#### More info: [Anonymous functions](https://msdn.microsoft.com/en-us/library/bb882516.aspx)
+
+## 3. Lambda expressions
 * A lambda expression is an anonymous function which can be used to create delegates or expression tree types.
 * Can be used to pass local functions as arguments or pass them as value of a function calls.
 * They are usually used for writing **LINQ** query expressions.
 
-###Syntax
+### Syntax
 ```csharp
 (input parameters) => execution code
 ```
 * Left hand side represents zero or more parameters
 * The right hand side represents the statement body
 
-###Usage
+### Usage
 ```csharp
 /**
  * Input : x and y
@@ -384,14 +385,14 @@ class AnonymousExample
 (x, y) => x == y
 ```
 
-###Advantage
+### Advantage
 * It allows you to write a method in the same place you are going to use it.
 * No need to specify the name of the function, its return type, and its access modifier.
 * It especially useful in places where a method is being used only once, and the method definition is short.
 * When reading the code you don't need to look elsewhere for the method's definition.
 
 
-###Differences between Lambda expressions and Anonymous methods
+### Differences between Lambda expressions and Anonymous methods
 * Lambda expressions doesn't use **delegate** keyword
 * An anonymous method explicitly requires you to define the parameter types and the return type for a method
 ```csharp
@@ -404,7 +405,7 @@ Func<double, double, double> anonymousSum = delegate(double x, double y)
 Func<double, double, double> lambdaSum = (x, y) => x + y;
 ```
 
-###Example
+### Example
 ```csharp
 public delegate double PerformCalculation(double val1, double val2);
 class LambdaExample
@@ -463,13 +464,13 @@ class LambdaExample
   }
 }
 ```
-####More info: [Lambda expressions](http://www.codeproject.com/Articles/17575/Lambda-Expressions-and-Expression-Trees-An-Introdu)
+#### More info: [Lambda expressions](http://www.codeproject.com/Articles/17575/Lambda-Expressions-and-Expression-Trees-An-Introdu)
 
 
 ## 4.Closure
 * A lambda expression is called *closure* when it captures variables from the outer scope.
 
-####Example 1
+#### Example 1
 ```csharp
 //Read example
 int factor = 4;
@@ -479,7 +480,7 @@ factor = 10;
 int result2 = scaleWithFactor(10); //100
 ```
 
-####Example 2
+#### Example 2
 ```csharp
 //Modify example
 int counter = 10;
@@ -489,10 +490,10 @@ Action resetCounter = () =>
       	             };
 //counter = 10
 resetCounter();
-//counter = 0
+//counter = 5
 ```
 
-###Example 3
+### Example 3
 ```csharp
 static void Main(string[] args)
 {

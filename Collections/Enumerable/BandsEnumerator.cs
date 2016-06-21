@@ -43,6 +43,7 @@ namespace Collections.Enumerable
         public void Reset()
         {
             currentIndex = -1;
+            currentBand = null;
         }
     }
 }

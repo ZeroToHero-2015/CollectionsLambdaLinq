@@ -34,7 +34,7 @@ namespace Collections
         private static void EnumerableExample()
         {
             Console.WriteLine();
-            Console.WriteLine("-----------------------------Enumerable Example-----------------------------");
+            Console.WriteLine("=====Example 1 (Enumerable example)=====");
 
             //Enumerating example
             var bands = new BandsEnumerable(BandsArray);
@@ -42,7 +42,7 @@ namespace Collections
             while (enumerator.MoveNext())
             {
                 var band = enumerator.Current;
-                Console.WriteLine("{0} ({1}, {2}): {3} albums.", band.Name, band.Genre, band.Country, band.StudioAlbums);
+                Console.WriteLine($"{band.Name} ({band.Genre}, {band.Country}): {band.StudioAlbums} albums.");
             }
 
             //TODO 1: Change "BandsEnumerator" to enumerate from last element to first.
@@ -51,7 +51,7 @@ namespace Collections
         private static void YieldExample()
         {
             Console.WriteLine();
-            Console.WriteLine("-----------------------------Yield Example-----------------------------");
+            Console.WriteLine("=====Example 2 (Yield example)=====");
 
             //Enumerating an yield list
             foreach (var frontman in FrontmenList())
@@ -81,14 +81,14 @@ namespace Collections
         private static void CollectionExample()
         {
             Console.WriteLine();
-            Console.WriteLine("-----------------------------Collection Example-----------------------------");
+            Console.WriteLine("=====Example 3 (Collection example)=====");
 
             var bandsCollection = new BandsCollection(BandsArray);
 
             //Custom insert example
             bandsCollection.Insert(0, new Band("Guta", 0, "", ""));
             bandsCollection.Insert(3, new Band("Salam", 0, "", ""));
-            bandsCollection.Insert(9, new Band("Susanu", 0, "", ""));
+            bandsCollection.Insert(9, new Band("Dan Bursuc", 0, "", ""));
 
             //Custom item set example
             bandsCollection[3] = new Band("Romeo Fantastik", 0, "", "");
@@ -109,20 +109,20 @@ namespace Collections
         private static void ListExample()
         {
             Console.WriteLine();
-            Console.WriteLine("-----------------------------List Example-----------------------------");
+            Console.WriteLine("=====Example 4 (List example)=====");
 
             var bandsList = new List<Band>(BandsArray);
 
             //Custom comparer example
-            bandsList.Sort(new BasicBandsComparer());
-            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
+            //bandsList.Sort(new BasicBandsComparer());
+            bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
             //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Name));
             //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.AlbumCount));
 
             var index = 0;
             foreach (var band in bandsList)
             {
-                Console.WriteLine("{0} {1} {2} {3}", index, band.Name, band.StudioAlbums, band.Country);
+                Console.WriteLine($"{index} {band.Name} {band.StudioAlbums} {band.Country}");
                 index++;
             }
 
@@ -137,7 +137,7 @@ namespace Collections
             bandsList.AddRange(bandsToAdd);
             var lastTwoBands = bandsList.GetRange(bandsList.Count - 2, 2);
 
-            foreach (var bandName in BandNames(lastTwoBands))
+            foreach (var bandName in BandNames(bandsList))
             {
                 Console.WriteLine(bandName);
             }
@@ -145,10 +145,13 @@ namespace Collections
             Console.WriteLine();
 
             //IndexOf uses Object.GetHashCode, which is a reference comparer by default
-            var indexNewGuta = bandsList.IndexOf(new Band("Guta", 0, "", ""));
-            Console.WriteLine("Index of new Guta is {0}", indexNewGuta);
+            var newGuta = new Band("Guta", 0, "", "");
+            var indexNewGuta = bandsList.IndexOf(newGuta);
+            Console.WriteLine($"Index of new Guta is {indexNewGuta}");
+
+            var refGuta = bandsToAdd[0];
             var indexRefGuta = bandsList.IndexOf(bandsToAdd[0]);
-            Console.WriteLine("Index of reference Guta is {0}", indexRefGuta);
+            Console.WriteLine($"Index of reference Guta is {indexRefGuta}");
 
             //TODO 4: Extend CustomBandsComparer to allow comapring by name length.
         }
@@ -156,7 +159,7 @@ namespace Collections
         private static void DictionaryExample()
         {
             Console.WriteLine();
-            Console.WriteLine("-----------------------------Dictionary Example-----------------------------");
+            Console.WriteLine("=====Example 5 (Dictionary example)=====");
 
             //Adding items example
             var bandsDictionary = new Dictionary<string, Band>();
@@ -169,14 +172,14 @@ namespace Collections
             foreach (var keyValuePair in bandsDictionary)
             {
                 //TODO 5: Change to display key and albums count
-                Console.WriteLine("Key: {0}, Value: {1}", keyValuePair.Key, keyValuePair.Value);
+                Console.WriteLine($"Key: {keyValuePair.Key}, Value: {keyValuePair.Value}");
             }
 
             Console.WriteLine();
 
             //Retrieving value based on key example
             var bandToGet = bandsDictionary["Muse"];
-            Console.WriteLine("{0} {1} {2}", bandToGet.Name, bandToGet.Genre, bandToGet.Country);
+            Console.WriteLine($"{bandToGet.Name} {bandToGet.Genre} {bandToGet.Country}");
 
             Console.WriteLine();
 
@@ -189,7 +192,6 @@ namespace Collections
         {
             yield return "Robert Plant";
             yield return "Rob Halford";
-            yield return "Nicu Covaci";
             yield return "Ozzy Osbourne";
             yield return "Till Lindemann";
             yield return "Dan Auerbach";
@@ -201,7 +203,7 @@ namespace Collections
             int index = 0;
             foreach (var band in bandsList)
             {
-                yield return index + " " + band.Name;
+                yield return $"{index} {band.Name}";
                 index++;
             }
         }
