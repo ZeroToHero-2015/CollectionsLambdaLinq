@@ -56,5 +56,13 @@ namespace Linq
                 Console.Write($"{number} ");
             }
         }
+
+        private static void WriteBandNames(IEnumerable<Band> bandList)
+        {
+            foreach (var band in bandList)
+            {
+                Console.Write($"{band.Name}, ");
+            }
+        }
     }
 }
