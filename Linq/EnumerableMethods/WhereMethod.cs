@@ -16,14 +16,14 @@ namespace Linq.EnumerableMethods
 
         public static IEnumerable<int> GetEvenNumbersLinqSql(IEnumerable<int> numbersList)
         {
-            return from nr in numbersList
-                   where nr % 2 == 0
-                   select nr;
+            return from number in numbersList
+                   where number % 2 == 0
+                   select number;
         }
 
         public static IEnumerable<int> GetEvenNumbersLinqLambda(IEnumerable<int> numbersList)
         {
-            return numbersList.Where(nr => nr % 2 == 0);
+            return numbersList.Where(number => number % 2 == 0);
         }
 
 

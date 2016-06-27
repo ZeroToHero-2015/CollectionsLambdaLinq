@@ -15,4 +15,16 @@
             Country = country;
         }
     }
+
+    public class BandSummary
+    {
+        public string Name { get; private set; }
+        public string Genre { get; private set; }
+
+        public BandSummary(string name, string genre)
+        {
+            Name = name;
+            Genre = genre;
+        }
+    }
 }
