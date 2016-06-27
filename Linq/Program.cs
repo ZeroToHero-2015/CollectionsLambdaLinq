@@ -9,21 +9,28 @@ namespace Linq
         private static readonly List<int> numbersList = new List<int>(new int[] { 0, 1, 2, 6, 8, 9, 21, 24, 10 });
         private static readonly List<Band> bandsList = new List<Band>
         {
-            new Band("Led Zeppelin", 9, "Hard Rock", "England"),
-            new Band("Judas Priest", 17, "Heavy Metal", "England"),
-            new Band("Phoenix", 10, "Rock", "Romania"),
-            new Band("Black Sabbath", 19, "Heavy Metal", "England"),
-            new Band("Rammstein", 6, "Industrial Metal", "Germany"),
-            new Band("Black Keys", 8, "Indie Rock", "United States"),
-            new Band("Muse", 6, "Alternative Rock", "England")
+            new Band("Led Zeppelin", "Hard Rock", "England", 
+                new List<string> { "LZ Album 1", "LZ Album 2", "LZ Album 3" }),
+            new Band("Judas Priest", "Heavy Metal", "England",
+                new List<string> { "JP Album 1", "JP Album 2" }),
+            new Band("Phoenix", "Rock", "Romania",
+                new List<string> { "Phx Album 1", "Phx Album 2", "Phx Album 3", "Phx Album 4" }),
+            new Band("Black Sabbath", "Heavy Metal", "England",
+                new List<string> { "BS Album 1", "BS Album 2" }),
+            new Band("Rammstein", "Industrial Metal", "Germany",
+                new List<string> { "Rms Album 1", "Rms Album 2" }),
+            new Band("Black Keys", "Indie Rock", "United States",
+                new List<string> { "BK Album 1", "BK Album 2", "BK Album 3", "BK Album 4" }),
+            new Band("Muse", "Alternative Rock", "England",
+                new List<string> { "Mus Album 1", "Mus Album 2", "Mus Album 3" })
         };
 
         static void Main(string[] args)
         {
             //WhereExample();
-            SelectExample();
+            //SelectExample();
             //SelectManyExample();
-            //AggregateExample();
+            AggregateExample();
             //GroupByExample();
             //SumMaxMinExample();
         }
@@ -70,6 +77,29 @@ namespace Linq
             Console.WriteLine();
         }
 
+        private static void SelectManyExample()
+        {
+            Console.WriteLine("=====Example 3 (SelectMany example)=====");
+
+            Console.WriteLine();
+            var albumsClassic = SelectManyMethod.GetAllAlbumsClassic(bandsList);
+            WriteStrings(albumsClassic);
+
+            Console.WriteLine();
+            var albumsLinqSql = SelectManyMethod.GetAllAlbumsLinqSql(bandsList);
+            WriteStrings(albumsLinqSql);
+
+            Console.WriteLine();
+            var albumsLinqLambda = SelectManyMethod.GetAllAlbumsLinqLambda(bandsList);
+            WriteStrings(albumsLinqLambda);
+
+            //TODO 3: Implement SelectManyMethod.GetAllWordsInAllAlbums
+
+            Console.WriteLine();
+        }
+
+        private static void AggregateExample() { }
+
         #region Helper Methods
 
         private static void WriteNumbersList(IEnumerable<int> numbersList)
@@ -93,6 +123,14 @@ namespace Linq
             foreach (var band in bandList)
             {
                 Console.WriteLine($"{band.Name}, {band.Genre}");
+            }
+        }
+
+        private static void WriteStrings(IEnumerable<string> stringsToWrite)
+        {
+            foreach (var stringToWrite in stringsToWrite)
+            {
+                Console.Write($"{stringToWrite}, ");
             }
         }
 

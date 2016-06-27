@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities.cs" />
+    <Compile Include="EnumerableMethods\SelectManyMethod.cs" />
     <Compile Include="EnumerableMethods\SelectMethod.cs" />
     <Compile Include="EnumerableMethods\WhereMethod.cs" />
     <Compile Include="Program.cs" />
