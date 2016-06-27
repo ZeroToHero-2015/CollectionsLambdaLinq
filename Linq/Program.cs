@@ -98,7 +98,22 @@ namespace Linq
             Console.WriteLine();
         }
 
-        private static void AggregateExample() { }
+        private static void AggregateExample()
+        {
+            Console.WriteLine("=====Example 4 (Aggregate example)=====");
+
+            Console.WriteLine();
+            var sumClassic = AggregateMethod.GetSumClassic(numbersList);
+            Console.Write(sumClassic);
+
+            Console.WriteLine();
+            var sumLinq = AggregateMethod.GetSumLinq(numbersList);
+            Console.Write(sumLinq);
+
+            //TODO 4: Implement AggregateMethod.GetSumOfEvenNumbers
+
+            Console.WriteLine();
+        }
 
         #region Helper Methods
 
