@@ -1,6 +1,7 @@
 ﻿using Linq.EnumerableMethods;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Linq
 {
@@ -30,9 +31,11 @@ namespace Linq
             //WhereExample();
             //SelectExample();
             //SelectManyExample();
-            AggregateExample();
-            //GroupByExample();
+            //AggregateExample();
+            GroupByExample();
             //SumMaxMinExample();
+
+            Console.ReadKey();
         }
 
         private static void WhereExample()
@@ -115,6 +118,36 @@ namespace Linq
             Console.WriteLine();
         }
 
+        private static void GroupByExample()
+        {
+            Console.WriteLine("=====Example 5 (GroupBy example)=====");
+
+            Console.WriteLine();
+            var bandsGroupedByCountryClassic = GroupByMethod.GetBandsGroupedByCountryClassic(bandsList);
+            WriteBandNamesGroupedByKey(bandsGroupedByCountryClassic);
+
+            Console.WriteLine();
+            var bandsGroupedByCountryLinq = GroupByMethod.GetBandsGroupedByCountryLinq(bandsList);
+            WriteBandNamesGroupedByKey(bandsGroupedByCountryLinq.ToDictionary(b => b.Key, b => b.ToList()));
+
+            Console.WriteLine();
+            var bandsGroupedByCountrySql = GroupByMethod.GetBandsGroupedByCountrySql(bandsList);
+            WriteBandNamesGroupedByKey(bandsGroupedByCountrySql.ToDictionary(b => b.Key, b => b.ToList()));
+
+            
+            Console.WriteLine();
+            var bandsGroupedByNumberOfAlbumsClassic = GroupByMethod.GetBandsGroupedByNumberOfAlbumsClassic(bandsList); //TODO 5: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using a for/foreach syntax
+            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsClassic);
+
+            Console.WriteLine();
+            var bandsGroupedByNumberOfAlbumsLinq = GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinq(bandsList); //TODO 6: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using LINQ syntax
+            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsLinq?.ToDictionary(b => b.Key.ToString(), b => b.ToList()));
+
+            Console.WriteLine();
+            var bandsGroupedByNumberOfAlbumsSql = GroupByMethod.GetBandsGroupedByNumberOfAlbumsSql(bandsList); //TODO 7: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using SQL syntax
+            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsSql?.ToDictionary(b => b.Key.ToString(), b => b.ToList()));
+        }
+
         #region Helper Methods
 
         private static void WriteNumbersList(IEnumerable<int> numbersList)
@@ -146,6 +179,27 @@ namespace Linq
             foreach (var stringToWrite in stringsToWrite)
             {
                 Console.Write($"{stringToWrite}, ");
+            }
+        }
+
+        private static void WriteBandNamesGroupedByKey(IDictionary<string, List<Band>> bandsGroupedByCountry)
+        {
+            if (bandsGroupedByCountry == null)
+                return;
+            
+            foreach (var bandsByCountryGroup in bandsGroupedByCountry)
+            {
+                var key = bandsByCountryGroup.Key;
+                var bands = bandsByCountryGroup.Value;
+
+                Console.Write($"Bands with key = {key}: ");
+
+                foreach (var band in bands)
+                {
+                    Console.Write($"{band.Name}, ");
+                }
+
+                Console.WriteLine();
             }
         }
 
