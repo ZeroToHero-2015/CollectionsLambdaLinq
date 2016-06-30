@@ -45,6 +45,7 @@
     <Compile Include="EnumerableMethods\GroupByMethod.cs" />
     <Compile Include="EnumerableMethods\SelectManyMethod.cs" />
     <Compile Include="EnumerableMethods\SelectMethod.cs" />
+    <Compile Include="EnumerableMethods\SumMaxMinMethod.cs" />
     <Compile Include="EnumerableMethods\WhereMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

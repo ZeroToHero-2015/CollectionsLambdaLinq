@@ -32,8 +32,8 @@ namespace Linq
             //SelectExample();
             //SelectManyExample();
             //AggregateExample();
-            GroupByExample();
-            //SumMaxMinExample();
+            //GroupByExample();
+            SumMaxMinExample();
 
             Console.ReadKey();
         }
@@ -146,6 +146,20 @@ namespace Linq
             Console.WriteLine();
             var bandsGroupedByNumberOfAlbumsSql = GroupByMethod.GetBandsGroupedByNumberOfAlbumsSql(bandsList); //TODO 7: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using SQL syntax
             WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsSql?.ToDictionary(b => b.Key.ToString(), b => b.ToList()));
+        }
+
+        private static void SumMaxMinExample()
+        {
+            Console.WriteLine("=====Example 6 (SumMaxMin example)=====");
+
+            Console.WriteLine($"Number of total albums classic: {SumMaxMinMethod.SumNumberOfTotalAlbumsClassic(bandsList)}");
+            Console.WriteLine($"Number of total albums LINQ: {SumMaxMinMethod.SumNumberOfTotalAlbumsLinq(bandsList)}");
+
+            Console.WriteLine($"Number of with minimum albums classic: {SumMaxMinMethod.MinNumberOfAlbumsClassic(bandsList)}");
+            Console.WriteLine($"Number of with minimum albums LINQ: {SumMaxMinMethod.MinNumberOfAlbumsLinq(bandsList)} ");
+
+            //TODO 8: Implement SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums
+            Console.WriteLine($"Number of bands with minimum albums: {SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums(bandsList)}");
         }
 
         #region Helper Methods
