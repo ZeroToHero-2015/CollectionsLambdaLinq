@@ -86,12 +86,12 @@ namespace Collections
             var bandsCollection = new BandsCollection(BandsArray);
 
             //Custom insert example
-            bandsCollection.Insert(0, new Band("Guta", 0, "", ""));
-            bandsCollection.Insert(3, new Band("Salam", 0, "", ""));
-            bandsCollection.Insert(9, new Band("Dan Bursuc", 0, "", ""));
+            bandsCollection.Insert(0, new Band("Band X", 0, "", ""));
+            bandsCollection.Insert(3, new Band("Band Y", 0, "", ""));
+            bandsCollection.Insert(9, new Band("Band Z", 0, "", ""));
 
             //Custom item set example
-            bandsCollection[3] = new Band("Romeo Fantastik", 0, "", "");
+            bandsCollection[3] = new Band("Band W", 0, "", "");
 
             //Custom remove example
             bandsCollection.RemoveAt(8);
@@ -114,8 +114,8 @@ namespace Collections
             var bandsList = new List<Band>(BandsArray);
 
             //Custom comparer example
-            //bandsList.Sort(new BasicBandsComparer());
-            bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
+            bandsList.Sort(new BasicBandsComparer());
+            //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Country));
             //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.Name));
             //bandsList.Sort(new CustomBandsComparer(BandsCompareBy.AlbumCount));
 
@@ -131,8 +131,8 @@ namespace Collections
             //Add/Get range example
             var bandsToAdd = new[]
             {
-                new Band("Guta", 0, "", ""),
-                new Band("Salam", 0, "", "")
+                new Band("Band X", 0, "", ""),
+                new Band("Band Y", 0, "", "")
             };
             bandsList.AddRange(bandsToAdd);
             var lastTwoBands = bandsList.GetRange(bandsList.Count - 2, 2);
@@ -145,15 +145,15 @@ namespace Collections
             Console.WriteLine();
 
             //IndexOf uses Object.GetHashCode, which is a reference comparer by default
-            var newGuta = new Band("Guta", 0, "", "");
-            var indexNewGuta = bandsList.IndexOf(newGuta);
-            Console.WriteLine($"Index of new Guta is {indexNewGuta}");
+            var newBand = new Band("Band X", 0, "", "");
+            var indexNewBand = bandsList.IndexOf(newBand);
+            Console.WriteLine($"Index of new Band X is {indexNewBand}");
 
-            var refGuta = bandsToAdd[0];
-            var indexRefGuta = bandsList.IndexOf(bandsToAdd[0]);
-            Console.WriteLine($"Index of reference Guta is {indexRefGuta}");
+            var refBand = bandsToAdd[0];
+            var indexRefBand = bandsList.IndexOf(bandsToAdd[0]);
+            Console.WriteLine($"Index of reference Band X is {indexRefBand}");
 
-            //TODO 4: Extend CustomBandsComparer to allow comapring by name length.
+            //TODO 4: Extend CustomBandsComparer to allow comparing by name length.
         }
 
         private static void DictionaryExample()
@@ -185,7 +185,7 @@ namespace Collections
 
             //TODO 7: Check if key is present before adding/retrieving a new entry.
             //bandsDictionary.Add("Muse", new Band("Muse", 6, "Alternative Rock", "England"));
-            //Console.WriteLine(bandsDictionary["Guta"].Name);
+            //Console.WriteLine(bandsDictionary["Band X"].Name);
         }
 
         private static IEnumerable<string> FrontmenList()
