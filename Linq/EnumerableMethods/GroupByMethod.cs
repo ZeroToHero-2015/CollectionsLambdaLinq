@@ -35,20 +35,8 @@ namespace Linq.EnumerableMethods
             return bands.GroupBy(band => band.Country);
         }
 
-        // Group the bands by the number of albums using a for/foreach syntax
-        public static IDictionary<int, List<Band>> GetBandsGroupedByNumberOfAlbumsClassic(IEnumerable<Band> bands)
-        {
-            return null;
-        }
-
-        // Group the bands by the number of albums using Lambda syntax
-        public static IEnumerable<IGrouping<int, Band>> GetBandsGroupedByNumberOfAlbumsLinqLambda(IEnumerable<Band> bands)
-        {
-            return null;
-        }
-
-        // Group the bands by the number of albums using SQL syntax
-        public static IEnumerable<IGrouping<int, Band>>  GetBandsGroupedByNumberOfAlbumsLinqSql(IEnumerable<Band> bands)
+        // Group the bands by the number of albums.
+        public static IEnumerable<IGrouping<int, Band>>  GetBandsGroupedByNumberOfAlbums(IEnumerable<Band> bands)
         {
             return null;
         }

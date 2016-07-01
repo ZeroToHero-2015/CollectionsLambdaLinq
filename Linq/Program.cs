@@ -146,20 +146,10 @@ namespace Linq
             var bandsGroupedByCountrySql = GroupByMethod.GetBandsGroupedByCountryLinqSql(bandsList);
             WriteBandNamesGroupedByKey(bandsGroupedByCountrySql.ToDictionary(b => b.Key, b => b.ToList()));
 
-            //TODO 5: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbumsClassic
+            //TODO 5: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums
             Console.WriteLine();
-            var bandsGroupedByNumberOfAlbumsClassic = GroupByMethod.GetBandsGroupedByNumberOfAlbumsClassic(bandsList); 
-            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsClassic);
-
-            //TODO 7: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqSql
-            Console.WriteLine();
-            var bandsGroupedByNumberOfAlbumsSql = GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqSql(bandsList);
+            var bandsGroupedByNumberOfAlbumsSql = GroupByMethod.GetBandsGroupedByNumberOfAlbums(bandsList);
             WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsSql);
-
-            //TODO 6: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqLambda 
-            Console.WriteLine();
-            var bandsGroupedByNumberOfAlbumsLinq = GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqLambda(bandsList);
-            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsLinq);
         }
 
         private static void SumMaxMinExample()
@@ -172,7 +162,7 @@ namespace Linq
             Console.WriteLine($"Number of with minimum albums classic: {SumMaxMinMethod.MinNumberOfAlbumsClassic(bandsList)}");
             Console.WriteLine($"Number of with minimum albums LINQ: {SumMaxMinMethod.MinNumberOfAlbumsLinq(bandsList)} ");
 
-            //TODO 8: Implement SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums
+            //TODO 6: Implement SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums
             Console.WriteLine($"Number of bands with minimum albums: {SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums(bandsList)}");
         }
 

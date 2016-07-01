@@ -344,18 +344,18 @@ class AnonymousExample
 
         //Call sum function
         double sum_result = sum_Function(val1, val2);
-        Console.WriteLine("{0} + {1} = {2}", val1, val2, sum_result);
+        Console.WriteLine("{0} + {1} = {2}"", val1, val2, sum_result);
 
         //Call product function
         double prod_result = prod_Function(val1, val2);
-        Console.WriteLine("{0} * {1} = {2}", val1, val2, prod_result);
+        Console.WriteLine("{0} * {1} = {2}"", val1, val2, prod_result);
 
         //Using sum_function reference
-        Console.Write("{0} + {1} = ", val1, val2);
+        Console.Write("{0} + {1} = "", val1, val2);
         ExecuteFunctionUsingFunc(sum_Function, val1, val2);
 
         //Using product_function reference
-        Console.Write("{0} * {1} = ", val1, val2);
+        Console.Write("{0} * {1} = "", val1, val2);
         ExecuteFunction(prod_Function, val1, val2);
     }
 }
@@ -490,7 +490,7 @@ Action resetCounter = () =>
       	             };
 //counter = 10
 resetCounter();
-//counter = 5
+//counter = 0
 ```
 
 ### Example 3
@@ -514,3 +514,32 @@ public static Func<int,int> GetIncFunc()
     return inc;
 }
 ```
+
+Linq
+============
+
+Stands for **Language-Integrated Query**, and allows traversal, filter, and projection operations over IEnumerable<T> collections.
+All methods are extensions on the Enumerable class and require the `System.Linq` namespace.
+
+**Syntax:** offers 2 alternatives:
+1. Query syntax (**SQL syntax**). EX:
+```csharp
+from number in numbersList
+where number % 2 == 0
+select number;
+```
+  * Pro: easier to read and understand.
+  * Con: not as powerful as Lambda syntax, some operations cannot be written in SQL syntax.
+
+
+2. Method syntax (**Lambda syntax**). EX:
+```csharp
+numbersList.Where(number => number % 2 == 0);
+```
+  * Pro: more powerful and compact.
+  * Con: harder to learn and follow.
+
+### 1. Where ###
+* Allows filtering of the collection based on the predicate (condition).
+* The predicate is a Func that takes the type of the objects in the collection as input, and returns a bool. 
+* The result of the `Where` operation is always an IEnumerable<T> where T is the object type in the original list.
