@@ -541,5 +541,36 @@ numbersList.Where(number => number % 2 == 0);
 
 ### 1. Where ###
 * Allows filtering of the collection based on the predicate (condition).
-* The predicate is a Func that takes the type of the objects in the collection as input, and returns a bool. 
+* The predicate is a Func that takes the type of the objects in the collection as input, and returns a bool.
 * The result of the `Where` operation is always an IEnumerable<T> where T is the object type in the original list.
+
+### 2. Select ###
+* Projects the elements in the collection into another form, based on the selector.
+* The selector is a Func that takes one element from the collection and returns the new type of object.
+* The result of the `Select` operation is always an IEnumerable<T> where T is the type resulting from the projection.
+
+### 3. Select Many ###
+* Flattens multi-dimensional collections, without the need for a second "select", based on the selector.
+* The selector is a Func that returns an IEnumerable<T> corresponding to one element from the original list.
+  All the resulting IEnumerable<T> are flattened into one final IEnumerable<T> that is returned by the SelectMany method.
+
+### 4. Aggregate ###
+* Applies a function to each element of the collection, updating an accumulator value for each execution of the function.
+* The first parameter of aggregate is the seed used for the accumulator value.
+* The accumulator function takes the accumulator value and the current iteration value, and returns the applied function result.
+
+### 5. Group by ###
+* Groups the elements of the collection according to one of their properties (the key), using a selector.
+* The key selector Func extracts the key for each element and places the element, in order to determine the group for that element.
+* The `GroupBy` method result is a IEnumerable<IGrouping<T1, T2>>, where T1 is the key and T2 is the type of elements in groups.
+* IGrouping<T1, T2> is a structure similar to an IEnumerable<T2>, with an added Key property of type T1.
+
+### 6. Sum, Min, Max ###
+* All these are methods based on Aggregate that return a value calculated by applying a transform on each element in the list.
+
+More info: [Linq Introduction](https://msdn.microsoft.com/en-us/library/mt693042.aspx), [Query Operators](https://msdn.microsoft.com/en-us/library/mt693029.aspx).
+
+Linq - Extra (for home)
+--------
+* Follow examples to implement "OrderByMethod" and "ContainsMethod" classes, similar to the other classes in the project. 
+  Provide examples of classic, Sql and Lambda implementations of the same functions.
