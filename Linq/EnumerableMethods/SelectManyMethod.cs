@@ -37,7 +37,7 @@ namespace Linq.EnumerableMethods
         //Hint: Use string.Split(' ') to get a list of words from a string.
         public static IEnumerable<string> GetAllWordsInAllAlbums(IEnumerable<Band> fullBandsInfo)
         {
-            return null;
+            return new List<string>();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Linq.EnumerableMethods
 
             foreach (var band in bands)
             {
-                    numberOfAlbums += band.Albums.Count();
+                numberOfAlbums = numberOfAlbums + band.Albums.Count();
             }
 
             return numberOfAlbums;
@@ -42,10 +42,10 @@ namespace Linq.EnumerableMethods
             return bandsList.Min(band => band.Albums.Count());
         }
 
+        // Count the number of bands with minimum number of albums
         public static int GetNumberOfBandsWithMinimumAlbums(List<Band> bandsList)
         {
-            //TODO 8 count the number of bands with minimum number of albums
-            return 0;
+            return default(int);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Linq.EnumerableMethods
         //"bandName comes from bandCountry, plays bandGenre, and has released bandStudioAlbums albums so far"
         public static IEnumerable<string> GetBandsReadableDescriptions(IEnumerable<Band> fullBandsInfo)
         {
-            return null;
+            return new List<string>();
         }
     }
 }

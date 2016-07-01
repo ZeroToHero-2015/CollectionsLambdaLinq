@@ -31,7 +31,7 @@ namespace Linq.EnumerableMethods
         //Hint: For string comparison, use string.StartsWith with StringComparison.InvariantCultureIgnoreCase
         public static IEnumerable<Band> GetBandsThatStartWithBlack(IEnumerable<Band> bandsList)
         {
-            return null;
+            return new List<Band>();
         }
     }
 }

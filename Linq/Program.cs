@@ -28,12 +28,12 @@ namespace Linq
 
         static void Main(string[] args)
         {
-            //WhereExample();
+            WhereExample();
             //SelectExample();
             //SelectManyExample();
             //AggregateExample();
             //GroupByExample();
-            SumMaxMinExample();
+            //SumMaxMinExample();
 
             Console.ReadKey();
         }
@@ -55,6 +55,9 @@ namespace Linq
             WriteNumbersList(evenNumbersLambda);
 
             //TODO 1: Implement WhereMethod.GetBandsThatStartWithBlack
+            Console.WriteLine();
+            var bandsThatStartWithBlack = WhereMethod.GetBandsThatStartWithBlack(bandsList);
+            WriteBandNames(bandsThatStartWithBlack);
 
             Console.WriteLine();
         }
@@ -76,6 +79,9 @@ namespace Linq
             WriteBandSummaries(bandSummariesLinqLambda);
 
             //TODO 2: Implement SelectMethod.GetBandsReadableDescriptions
+            Console.WriteLine();
+            var bandsReadableDescriptions = SelectMethod.GetBandsReadableDescriptions(bandsList);
+            WriteStrings(bandsReadableDescriptions);
 
             Console.WriteLine();
         }
@@ -97,6 +103,9 @@ namespace Linq
             WriteStrings(albumsLinqLambda);
 
             //TODO 3: Implement SelectManyMethod.GetAllWordsInAllAlbums
+            Console.WriteLine();
+            var allWords = SelectManyMethod.GetAllWordsInAllAlbums(bandsList);
+            WriteStrings(allWords);
 
             Console.WriteLine();
         }
@@ -107,13 +116,16 @@ namespace Linq
 
             Console.WriteLine();
             var sumClassic = AggregateMethod.GetSumClassic(numbersList);
-            Console.Write(sumClassic);
+            Console.Write($"Sum classic: {sumClassic}");
 
             Console.WriteLine();
             var sumLinq = AggregateMethod.GetSumLinq(numbersList);
-            Console.Write(sumLinq);
+            Console.Write($"Sum Linq: {sumLinq}");
 
             //TODO 4: Implement AggregateMethod.GetSumOfEvenNumbers
+            Console.WriteLine();
+            var sumOfEven = AggregateMethod.GetSumOfEvenNumbers(numbersList);
+            Console.Write($"Sum of even: {sumOfEven}");
 
             Console.WriteLine();
         }
@@ -127,25 +139,27 @@ namespace Linq
             WriteBandNamesGroupedByKey(bandsGroupedByCountryClassic);
 
             Console.WriteLine();
-            var bandsGroupedByCountryLinq = GroupByMethod.GetBandsGroupedByCountryLinq(bandsList);
+            var bandsGroupedByCountryLinq = GroupByMethod.GetBandsGroupedByCountryLinqLambda(bandsList);
             WriteBandNamesGroupedByKey(bandsGroupedByCountryLinq.ToDictionary(b => b.Key, b => b.ToList()));
 
             Console.WriteLine();
-            var bandsGroupedByCountrySql = GroupByMethod.GetBandsGroupedByCountrySql(bandsList);
+            var bandsGroupedByCountrySql = GroupByMethod.GetBandsGroupedByCountryLinqSql(bandsList);
             WriteBandNamesGroupedByKey(bandsGroupedByCountrySql.ToDictionary(b => b.Key, b => b.ToList()));
 
-            
+            //TODO 5: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbumsClassic
             Console.WriteLine();
-            var bandsGroupedByNumberOfAlbumsClassic = GroupByMethod.GetBandsGroupedByNumberOfAlbumsClassic(bandsList); //TODO 5: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using a for/foreach syntax
+            var bandsGroupedByNumberOfAlbumsClassic = GroupByMethod.GetBandsGroupedByNumberOfAlbumsClassic(bandsList); 
             WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsClassic);
 
+            //TODO 7: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqSql
             Console.WriteLine();
-            var bandsGroupedByNumberOfAlbumsLinq = GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinq(bandsList); //TODO 6: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using LINQ syntax
-            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsLinq?.ToDictionary(b => b.Key.ToString(), b => b.ToList()));
+            var bandsGroupedByNumberOfAlbumsSql = GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqSql(bandsList);
+            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsSql);
 
+            //TODO 6: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqLambda 
             Console.WriteLine();
-            var bandsGroupedByNumberOfAlbumsSql = GroupByMethod.GetBandsGroupedByNumberOfAlbumsSql(bandsList); //TODO 7: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums using SQL syntax
-            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsSql?.ToDictionary(b => b.Key.ToString(), b => b.ToList()));
+            var bandsGroupedByNumberOfAlbumsLinq = GroupByMethod.GetBandsGroupedByNumberOfAlbumsLinqLambda(bandsList);
+            WriteBandNamesGroupedByKey(bandsGroupedByNumberOfAlbumsLinq);
         }
 
         private static void SumMaxMinExample()
@@ -196,15 +210,57 @@ namespace Linq
             }
         }
 
-        private static void WriteBandNamesGroupedByKey(IDictionary<string, List<Band>> bandsGroupedByCountry)
+        private static void WriteBandNamesGroupedByKey(IDictionary<string, List<Band>> bandsGroupedByKey)
         {
-            if (bandsGroupedByCountry == null)
+            if (bandsGroupedByKey == null)
                 return;
             
-            foreach (var bandsByCountryGroup in bandsGroupedByCountry)
+            foreach (var bandsByKeyGroup in bandsGroupedByKey)
             {
-                var key = bandsByCountryGroup.Key;
-                var bands = bandsByCountryGroup.Value;
+                var key = bandsByKeyGroup.Key;
+                var bands = bandsByKeyGroup.Value;
+
+                Console.Write($"Bands with key = {key}: ");
+
+                foreach (var band in bands)
+                {
+                    Console.Write($"{band.Name}, ");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void WriteBandNamesGroupedByKey(IDictionary<int, List<Band>> bandsGroupedByKey)
+        {
+            if (bandsGroupedByKey == null)
+                return;
+
+            foreach (var bandsByKeyGroup in bandsGroupedByKey)
+            {
+                var key = bandsByKeyGroup.Key;
+                var bands = bandsByKeyGroup.Value;
+
+                Console.Write($"Bands with key = {key}: ");
+
+                foreach (var band in bands)
+                {
+                    Console.Write($"{band.Name}, ");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void WriteBandNamesGroupedByKey(IEnumerable<IGrouping<int, Band>> bandsGroupedByKey)
+        {
+            if (bandsGroupedByKey == null)
+                return;
+
+            foreach (var bandsByKeyGroup in bandsGroupedByKey)
+            {
+                var key = bandsByKeyGroup.Key;
+                var bands = bandsByKeyGroup;
 
                 Console.Write($"Bands with key = {key}: ");
 
