@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Collections.Enumerable
 {
@@ -17,12 +15,11 @@ namespace Collections.Enumerable
         private int currentIndex;
         private Band currentBand;
 
-        public BandsEnumerator(IEnumerable<Band> bandsCollection)
+        public BandsEnumerator(Band[] bandsArray)
         {
-            collection = bandsCollection.ToArray();
+            collection = bandsArray;
             //until "MoveNext" is called first time, the enumerator is positioned before the first element
-            currentIndex = -1;
-            currentBand = null;
+            Reset();
         }
 
         public void Dispose() { }
@@ -31,7 +28,7 @@ namespace Collections.Enumerable
         {
             currentIndex++;
 
-            if (currentIndex >= collection.Count())
+            if (currentIndex >= collection.Length)
             {
                 return false;
             }
