@@ -46,7 +46,7 @@
     <Compile Include="Enumerable\BandsEnumerable.cs" />
     <Compile Include="Enumerable\BandsEnumerator.cs" />
     <Compile Include="List\BasicBandsComparer.cs" />
-    <Compile Include="CustomBandsComparer.cs" />
+    <Compile Include="List\CustomBandsComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

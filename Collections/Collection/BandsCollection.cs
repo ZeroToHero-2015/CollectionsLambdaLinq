@@ -42,7 +42,7 @@ namespace Collections.Collection
 
         protected override void ClearItems()
         {
-            base.ClearItems();
+            base.ClearItems();         
         }
     }
 }

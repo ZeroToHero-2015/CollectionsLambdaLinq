@@ -51,7 +51,7 @@ namespace Collections
             Console.WriteLine("=====Example 2 (Yield example)=====");
 
             //Enumerating an yield list
-            foreach (var frontman in FrontmenList())
+            foreach (var frontman in FrontmenList)
             {
                 Console.WriteLine(frontman);
             }
@@ -185,14 +185,17 @@ namespace Collections
             //Console.WriteLine(bandsDictionary["Band X"].Name);
         }
 
-        private static IEnumerable<string> FrontmenList()
+        private static IEnumerable<string> FrontmenList
         {
-            yield return "Robert Plant";
-            yield return "Rob Halford";
-            yield return "Ozzy Osbourne";
-            yield return "Till Lindemann";
-            yield return "Dan Auerbach";
-            yield return "Matt Bellamy";
+            get
+            {
+                yield return "Robert Plant";
+                yield return "Rob Halford";
+                yield return "Ozzy Osbourne";
+                yield return "Till Lindemann";
+                yield return "Dan Auerbach";
+                yield return "Matt Bellamy";
+            }
         }
 
         private static IEnumerable<string> BandNames(IEnumerable<Band> bandsList)
