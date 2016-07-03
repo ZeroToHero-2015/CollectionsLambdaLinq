@@ -19,7 +19,7 @@ namespace Linq.EnumerableMethods
 
         public static int GetSumLinq(IEnumerable<int> numbersList)
         {
-            return numbersList.Aggregate(0, (sum, next) => sum = sum + next);
+            return numbersList.Aggregate(0, (sum, element) => sum = sum + element);
         }
 
         //Implement the method, so it returns the sum of even numbers in the list.

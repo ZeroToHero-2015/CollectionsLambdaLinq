@@ -42,8 +42,8 @@ namespace Linq.EnumerableMethods
             return bandsList.Min(band => band.Albums.Count());
         }
 
-        // Count the number of bands with minimum number of albums
-        public static int GetNumberOfBandsWithMinimumAlbums(List<Band> bandsList)
+        // Return the total number of albums released by English bands
+        public static int GetNumberOfAlbumsByEnglishBands(List<Band> bandsList)
         {
             return default(int);
         }

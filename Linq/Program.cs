@@ -140,11 +140,11 @@ namespace Linq
 
             Console.WriteLine();
             var bandsGroupedByCountryLinq = GroupByMethod.GetBandsGroupedByCountryLinqLambda(bandsList);
-            WriteBandNamesGroupedByKey(bandsGroupedByCountryLinq.ToDictionary(b => b.Key, b => b.ToList()));
+            WriteBandNamesGroupedByKey(bandsGroupedByCountryLinq);
 
             Console.WriteLine();
             var bandsGroupedByCountrySql = GroupByMethod.GetBandsGroupedByCountryLinqSql(bandsList);
-            WriteBandNamesGroupedByKey(bandsGroupedByCountrySql.ToDictionary(b => b.Key, b => b.ToList()));
+            WriteBandNamesGroupedByKey(bandsGroupedByCountrySql);
 
             //TODO 5: Implement GroupByMethod.GetBandsGroupedByNumberOfAlbums
             Console.WriteLine();
@@ -162,8 +162,8 @@ namespace Linq
             Console.WriteLine($"Number of with minimum albums classic: {SumMaxMinMethod.MinNumberOfAlbumsClassic(bandsList)}");
             Console.WriteLine($"Number of with minimum albums LINQ: {SumMaxMinMethod.MinNumberOfAlbumsLinq(bandsList)} ");
 
-            //TODO 6: Implement SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums
-            Console.WriteLine($"Number of bands with minimum albums: {SumMaxMinMethod.GetNumberOfBandsWithMinimumAlbums(bandsList)}");
+            //TODO 6: Implement SumMaxMinMethod.GetNumberOfAlbumsByEnglishBands
+            Console.WriteLine($"Number of English albums: {SumMaxMinMethod.GetNumberOfAlbumsByEnglishBands(bandsList)}");
         }
 
         #region Helper Methods
@@ -196,7 +196,7 @@ namespace Linq
         {
             foreach (var stringToWrite in stringsToWrite)
             {
-                Console.Write($"{stringToWrite}, ");
+                Console.WriteLine($"{stringToWrite}, ");
             }
         }
 
@@ -221,7 +221,7 @@ namespace Linq
             }
         }
 
-        private static void WriteBandNamesGroupedByKey(IDictionary<int, List<Band>> bandsGroupedByKey)
+        private static void WriteBandNamesGroupedByKey(IEnumerable<IGrouping<string, Band>> bandsGroupedByKey)
         {
             if (bandsGroupedByKey == null)
                 return;
@@ -229,7 +229,7 @@ namespace Linq
             foreach (var bandsByKeyGroup in bandsGroupedByKey)
             {
                 var key = bandsByKeyGroup.Key;
-                var bands = bandsByKeyGroup.Value;
+                var bands = bandsByKeyGroup;
 
                 Console.Write($"Bands with key = {key}: ");
 
