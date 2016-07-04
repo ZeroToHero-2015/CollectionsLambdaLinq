@@ -486,7 +486,7 @@ int result2 = scaleWithFactor(10); //100
 int counter = 10;
 Action resetCounter = () =>
                       {
-      		            counter = 5;
+      		            counter = 0;
       	             };
 //counter = 10
 resetCounter();
